@@ -1,0 +1,208 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12">
+        <div class="head">User Profile</div>
+      </div>
+    </div>
+    <form (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
+      <div class="row mx-2 mt-3 justify-content-between">
+        <div class="col-md-3 bg-white pt-3 pb-3 custom-profile-width">
+          <div class="text-center">
+            <div>
+              <label class="hoverable" for="fileInput">
+                <img class="profile-img" [src]="url ? url : 'assets/Ellipse 8@2x.png'"
+                  onerror="this.onerror=null;this.src='assets/Ellipse 8@2x.png';" />
+                <div class="hover-text">
+                  <mat-icon svgIcon="img-edit"></mat-icon>
+                </div>
+                <div class="background"></div>
+              </label>
+              <br />
+              <input id="fileInput" type="file" (change)="onSelectFile($event)" />
+            </div>
+            <h4 class="user-name">{{ Form?.value?.name }} - {{ Form?.value?.role }}</h4>
+            <mat-error *ngIf="hasError('image', 'required') && Form.controls.image.touched">
+              <span>Image is required</span>
+            </mat-error>
+          </div>
+          <div class="pt-3">
+            <label>Current password</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input type="password" formControlName="current_password" matInput placeholder="Current password" />
+              <mat-error *ngIf="hasError('current_password', 'required')">
+                <span>Password is required</span>
+              </mat-error>
+              <mat-error *ngIf="hasError('current_password', 'minlength')">
+                <span translate>Password must be atleast 5 characters </span>
+              </mat-error>
+            </mat-form-field>
+            <label>New password</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input type="password" formControlName="new_password" matInput placeholder="New password" />
+              <mat-error *ngIf="hasError('new_password', 'required')">
+                <span>New password is required</span>
+              </mat-error>
+              <mat-error *ngIf="hasError('new_password', 'minlength')">
+                <span translate>New Password must be atleast 5 characters </span>
+              </mat-error>
+            </mat-form-field>
+
+            <label>Repeat password</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input type="password" formControlName="confirm_password" matInput placeholder="Repeat password" />
+              <mat-error *ngIf="hasError('confirm_password', 'required')">
+                <span>Repeat password is required</span>
+              </mat-error>
+              <mat-error *ngIf="hasError('confirm_password', 'mustMatch')">
+                <span>Passwords do not match</span>
+              </mat-error>
+              <mat-error *ngIf="hasError('confirm_password', 'minlength')">
+                <span translate>Password must be atleast 5 characters </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-8 bg-white pt-3 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head pl-2">Settings</h5>
+            <!-- <div><mat-slide-toggle color="primary"></mat-slide-toggle></div> -->
+          </div>
+          <mat-divider></mat-divider>
+          <div class="pl-2 pr-2">
+            <div class="row pt-3">
+              <div class="col">
+                <label>Name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="name" />
+                  <mat-error *ngIf="hasError('name', 'required')">
+                    <span>Name is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Email</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input readonly="true" matInput placeholder="Enter..." formControlName="email" />
+                  <mat-error *ngIf="hasError('email', 'required')">
+                    <span>Email is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row pt-2">
+              <div class="col">
+                <label>Role</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input readonly="true" matInput placeholder="Enter..." formControlName="role" />
+                  <mat-error *ngIf="hasError('role', 'required')">
+                    <span>Role is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Joining Date</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input readonly="true" matInput placeholder="Enter..." [matDatepicker]="picker"
+                    formControlName="joining_date" />
+                  <mat-datepicker-toggle [disabled]="true" matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="hasError('joining_date', 'required')">
+                    <span>Joining date is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-12 pl-0 pr-0">
+              <label>Page Access</label>
+              <div class="height-chip">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
+                      (removed)="remove(tag)">
+                      {{ tag }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="New permission..." [disabled]="true" #tagInput formControlName="permissions"
+                      [matChipInputFor]="chipList" [matAutocomplete]="auto"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                      (matChipInputTokenEnd)="add($event)" />
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let elem of filteredPermissions | async" [value]="elem">
+                      {{ elem }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-error class="negative-margin" *ngIf="!tags.length && Form.controls.permissions.touched">
+                  <span>Permission is required</span>
+                </mat-error>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="px-4 pt-2 pb-2 w-100">
+          <div class="col-md-12 d-flex justify-content-end">
+            <button [disabled]="isLoading || fileUploading" mat-flat-button class="save-btn text-white version-btn">Save
+              Changes</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+    <!-- <h3>Container</h3>
+
+    <input style="display: none" type="file" #fileInput multiple="multiple"
+      (change)="onSelected($event.target.files)" />
+    <button (click)="showFileDialog()">Click here to Upload File</button>
+    <div *ngFor="let container of containers$ | async">
+      {{ container.name }}
+      <button (click)="onClick(container.name)">View</button>
+    </div>
+
+    <h3>Uploads</h3>
+    <ng-container *ngFor="let upload of uploads$ | async">
+      <pre>{{ upload | json }}</pre>
+    </ng-container>
+
+    <ng-container *ngIf="items$ | async as items">
+      <ng-container *ngIf="items.length === 0">
+        No Items - Try uploading some files
+      </ng-container>
+      <div *ngFor="let item of items">
+        <span>{{ item.name }}</span>
+        <span>{{ item.properties.contentLength }}</span>
+        <span>{{ item.properties.lastModified | date: 'short' }}</span>
+        <div>
+          <button (click)="onDownloadClick(item.name)">Download</button>
+          <button (click)="onDeleteClick(item.name)">Delete</button>
+        </div>
+      </div>
+    </ng-container>
+
+    <h3>Deleted</h3>
+    <div *ngFor="let item of deletedItems$ | async">
+      <pre> {{ item | json }}</pre>
+    </div>
+
+    <h3>Downloads</h3>
+    <div *ngFor="let download of downloads$ | async">
+      {{ download.containerName }}:
+      {{download |json}}
+      <a [href]="download.url" target="_blank">
+        {{ download.filename }}
+      </a>
+    </div> -->
+
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & More.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

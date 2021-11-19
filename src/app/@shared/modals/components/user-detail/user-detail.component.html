@@ -1,0 +1,88 @@
+<div class="modal-content">
+  <div class="modal-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <h4 class="mb-0">{{ data?.fromComponent == 'UserManagementComponent' ? 'User Details' : 'Admin Details' }}</h4>
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true">
+        <img src="assets/cancel.png" width="20px" />
+      </span>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="modal-body pb-4 pt-1">
+    <!-- <h3>Delete this {{ data?.type == 'delete' ? 'item' : 'user' }} ?</h3> -->
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div fxFlex="column" class="pt-3">
+        <img
+          [src]="dataModel.image_url"
+          onerror="this.onerror=null;this.src='assets/profile.png';"
+          class="img-fluid"
+          width="60%"
+        />
+      </div>
+      <div fxFlex="column" class="pt-2">
+        <div>
+          <h6>Username</h6>
+          <p>{{ dataModel?.user_name }}</p>
+        </div>
+        <div>
+          <h6>Email</h6>
+          <p [title]="dataModel?.email">{{ dataModel?.email | truncateString: 15 }}</p>
+        </div>
+        <div *ngIf="data?.fromComponent == 'UserManagementComponent'">
+          <h6>Gender</h6>
+          <p>{{ dataModel?.gender }}</p>
+        </div>
+        <div *ngIf="data?.fromComponent == 'UserManagementComponent'">
+          <h6>Phone no.</h6>
+          <p>{{ dataModel?.phone_number ? dataModel?.phone_number : '-' }}</p>
+        </div>
+        <!-- <div *ngIf="data?.fromComponent != 'UserManagementComponent'">
+          <h6>Workout program type</h6>
+          <p>{{ dataModel?.work_out }}</p>
+        </div> -->
+      </div>
+      <div fxFlex="column" class="pt-2">
+        <div *ngIf="data?.fromComponent == 'UserManagementComponent'">
+          <h6>First name</h6>
+          <p>{{ dataModel?.first_name }}</p>
+        </div>
+        <div *ngIf="data?.fromComponent == 'UserManagementComponent'">
+          <h6>Last name</h6>
+          <p>{{ dataModel?.last_name }}</p>
+        </div>
+        <div *ngIf="data?.fromComponent != 'UserManagementComponent'">
+          <h6>Role</h6>
+          <p>{{ dataModel?.user_type ? dataModel?.user_type : dataModel?.role }}</p>
+        </div>
+        <div *ngIf="data?.fromComponent == 'UserManagementComponent'">
+          <h6>Country</h6>
+          <p>{{ dataModel?.country }}</p>
+        </div>
+
+        <div *ngIf="data?.fromComponent != 'UserManagementComponent'">
+          <h6>Permission</h6>
+          <mat-chip-list>
+            <mat-chip *ngFor="let permission of dataModel?.permission | slice: 0:3">{{ permission?.name }} </mat-chip>
+            <div *ngFor="let permission of dataModel?.permission; let i = index; let last = last">
+              <span style="color: #000" *ngIf="last && i > 3">&nbsp;+{{ i - 3 }} more</span>
+            </div>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+      <mat-dialog-actions class="d-flex justify-content-start" fxLayoutGap="20px">
+        <button mat-button mat-dialog-close>Close</button>
+        <!-- <button
+            mat-button
+            (click)="data?.type == 'delete' || data?.type == 'delete-user' ? lookUpComponent() : ''"
+            cdkFocusInitial
+            class="clicked"
+          >
+            Delete
+          </button> -->
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

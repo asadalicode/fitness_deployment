@@ -1,0 +1,122 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 pl-0">
+        <div class="head">Push Notifications</div>
+      </div>
+    </div>
+    <div class="row mx-2 mt-3">
+      <div *ngIf="isBusy && admin_id" class="col-md-12 pt-5 justify-content-center d-flex">
+        <app-loader [size]="1.5" class="inline-loader" [isLoading]="isBusy"></app-loader>
+      </div>
+      <form *ngIf="!isBusy" class="w-100" [formGroup]="Form" #f (ngSubmit)="submit()" novalidate>
+        <div class="col-md-12 bg-white pt-3 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">{{ type == 'Edit' ? 'Edit' : 'Add New' }}</h5>
+
+            <!-- <div fxLayoutGap="15px" fxLayout="row" fxLayoutAlign="center center" class="coach-left">
+              <h4>Activity Status</h4>
+              <mat-slide-toggle formControlName="status">{{Form.value.status?'Active':'Inactive'}}</mat-slide-toggle>
+            </div> -->
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col-md-6 col-sm-12" style="display: grid">
+                <label>Title</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="title_english" />
+                  <mat-error *ngIf="hasError('title_english', 'required')">
+                    <span>Title is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-6 col-sm-12" dir="rtl" style="display: grid">
+                <label class="ml-auto">لقب</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="أدخل..." formControlName="title_arabic" />
+                  <mat-error *ngIf="hasError('title_arabic', 'required')">
+                    <span style="direction: rtl">العنوان مطلوب</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col">
+                <label>Message (English)</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <textarea rows="5" matInput placeholder="Enter...." formControlName="body_english"></textarea>
+
+                  <mat-error *ngIf="hasError('body_english', 'required')">
+                    <span>Message is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col" dir="rtl">
+                <label>Message (Arabic)</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <textarea dir="auto" rows="5" matInput placeholder="أدخل" formControlName="body_arabic"></textarea>
+                  <mat-error *ngIf="hasError('body_arabic', 'required')">
+                    <span>أدخل رسالة</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col">
+                <label>Users</label>
+                <ng-multiselect-dropdown
+                  [placeholder]="'select...'"
+                  [settings]="dropdownSettings"
+                  [data]="usersList"
+                  formControlName="users_ids"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+                <mat-error *ngIf="hasError('users_ids', 'required') && Form.controls.users_ids.touched">
+                  <span>Atleast one user is required</span>
+                </mat-error>
+              </div>
+              <div class="col">
+                <label>Coaches</label>
+                <ng-multiselect-dropdown
+                  [placeholder]="'select...'"
+                  [settings]="dropdownSettings"
+                  [data]="coachList"
+                  formControlName="coach_ids"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+                <mat-error *ngIf="hasError('coach_ids', 'required') && Form.controls.coach_ids.touched">
+                  <span>Atleast one user is required</span>
+                </mat-error>
+              </div>
+            </div>
+            <!-- <h6 class="pt-3">Page Permission</h6> -->
+
+            <mat-divider></mat-divider>
+            <div class="row mt-3">
+              <div class="bg-white pt-2 pb-2 w-100">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <button [disabled]="Form.invalid" mat-flat-button class="save-btn text-white version-btn py-1">
+                    {{ admin_id ? 'Send' : 'Add New' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & More.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<!-- <div class="my-modal-layout" fxLayout="row" fxLayoutAlign="center">
+  <div class="close" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+  </div>
+</div> -->
+<div class="modal-content">
+  <div class="modal-header" align="end">
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true">
+        <img src="assets/cancel.png" width="20px" />
+      </span>
+    </button>
+  </div>
+  <div class="modal-body pb-4 text-center pt-1">
+    <div>
+      <img src="assets/_icons/delete (3).svg" width="80" />
+
+      <h3>Delete this {{ data?.type == 'delete' ? 'item' : 'user' }} ?</h3>
+      <p>
+        {{
+          data?.type == 'delete'
+            ? 'Are you sure about deleting this item? This cannot be undone.'
+            : 'Are you sure about deleting this user? This cannot be undone.'
+        }}
+      </p>
+      <mat-dialog-actions class="d-flex justify-content-center" fxLayoutGap="20px">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button (click)="lookUpComponent()" cdkFocusInitial class="clicked">Delete</button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

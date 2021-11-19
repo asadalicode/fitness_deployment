@@ -1,0 +1,113 @@
+[
+  {
+  "id": 1,
+   "user_count": "30",
+   "active_web": "1",
+   "active_mobile": "2",
+   "created": "2021-04-19T04:00:00.000Z"
+},
+{
+  "id": 2,
+   "user_count": "30",
+   "active_web": "11",
+   "active_mobile": "20",
+   "created": "2021-04-19T04:00:00.000Z"
+},
+{
+  "id": 3,
+   "user_count": "30",
+   "active_web": "7",
+   "active_mobile": "12",
+   "created": "2021-04-18T04:00:00.000Z"
+},
+{
+  "id": 4,
+   "user_count": "40",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+},
+{
+  "id": 5,
+   "user_count": "20",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+},
+{
+  "id": 6,
+   "user_count": "10",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+},
+{
+  "id": 7,
+   "user_count": "20",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+},
+{
+  "id": 8,
+   "user_count": "43",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+},
+{
+  "id": 9,
+   "user_count": "43",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+}
+,
+{
+  "id": 10,
+   "user_count": "43",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+}
+,
+{
+  "id": 11,
+   "user_count": "43",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+}
+,
+{
+  "id": 12,
+   "user_count": "43",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+}
+,
+{
+  "id": 13,
+   "user_count": "43",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+}
+,
+{
+  "id": 14,
+   "user_count": "43",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+},
+{
+  "id": 15,
+   "user_count": "43",
+   "active_web": "16",
+   "active_mobile": "22",
+   "created": "2021-04-18T04:00:00.000Z"
+}
+
+]

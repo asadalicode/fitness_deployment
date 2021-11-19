@@ -1,0 +1,21 @@
+.mat-chip.mat-standard-chip::after {
+  background: transparent;
+}
+.mat-standard-chip {
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+}
+.modal-body {
+  h6 {
+    font-size: 18px;
+    font-family: "Source-Sans-Pro-Bold" !important;
+  }
+  p {
+    font-size: 18px;
+    font-family: "Source Sans Pro" !important;
+  }
+  button {
+    border: 1px solid #dddddd;
+  }
+}

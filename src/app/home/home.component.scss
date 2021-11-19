@@ -1,0 +1,265 @@
+@import "../../assets/fonts/poppins/stylesheet.css";
+@import "../../assets/fonts/stylesheet.css";
+
+.container {
+  text-align: center;
+  padding: 1em;
+}
+
+.logo {
+  width: 150px;
+  margin: 0 auto;
+}
+
+q {
+  font-style: italic;
+  quotes: "« " " »";
+}
+.mat-chip-list-wrapper {
+  display: none;
+}
+
+.mat-calendar-body-cell.selected {
+  background-color: red !important;
+  border-radius: 50%;
+}
+.drop-calendar {
+  width: 30rem;
+}
+.bg-color {
+  background-color: #17242a;
+}
+.first-div {
+  background-color: #ffffff;
+  box-shadow: 8px 9px 32px #0000000f;
+  border-radius: 5px;
+  max-width: 32%;
+}
+.second-div {
+  background-color: #ffffff;
+  box-shadow: 8px 9px 32px #0000000f;
+  border-radius: 5px;
+  max-width: 32%;
+}
+.third-div {
+  background-color: #ffffff;
+  box-shadow: 8px 9px 32px #0000000f;
+  border-radius: 5px;
+  max-width: 32%;
+}
+// .forth-div {
+//   background-color: #2b7a78;
+//   border-radius: 5px;
+//   max-width: 23%;
+// }
+// .card-box p {
+//   font-size: 12px;
+// }
+table {
+  width: 100%;
+}
+.table-bg {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #ffffff;
+}
+::ng-deep .page-item.active .page-link {
+  z-index: 3;
+  color: #000 !important;
+  background-color: transparent !important;
+  border-color: #dee2e6 !important;
+}
+::ng-deep .page-link {
+  color: #000;
+}
+// @media (min-width: 1281px) {
+//   .first-div,
+//   .second-div,
+//   .third-div,
+//   .forth-div {
+//     max-width: 23%;
+//   }
+// }
+.custom-h5 {
+  font-size: 1.5rem;
+}
+.excel-btn {
+  height: 30.88px;
+  line-height: 30.88px;
+  padding: 0 10px;
+}
+.light-color {
+  background-color: #def2f1;
+}
+//input outline color
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(0, 0, 0, 0.12) !important;
+  // opacity: 1!important;
+}
+
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #213f6c !important;
+}
+
+// mat-input error outline color
+::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+  .mat-form-field-outline-thick {
+  color: #213f6c !important;
+  opacity: 0.8 !important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+  caret-color: #213f6c !important;
+}
+
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-element,
+.mat-warn .mat-input-element {
+  caret-color: #213f6c !important;
+}
+
+// mat-label normal state style
+::ng-deep .mat-form-field-label {
+  color: #000 !important;
+  // color: $mainColor!important;
+}
+
+input::placeholder {
+  color: #213f6c;
+}
+
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #213f6c !important;
+}
+
+// mat-label error style
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #213f6c !important;
+}
+.selector-btn {
+  border-radius: 3px;
+  border: 1px solid #dddddd;
+}
+.date-picker {
+  font-size: 12px;
+  max-width: 176px;
+}
+::ng-deep .date-picker .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+::ng-deep .date-picker .mat-form-field-infix {
+  padding: 5px 0 7px 0 !important;
+}
+.version-btn {
+  font-family: "Source Sans Pro" !important;
+  font-size: 16px;
+}
+.card-box {
+  h3 {
+    font-family: "Source-Sans-Pro-SemiBold";
+    color: #0d1111;
+    font-size: 40px;
+  }
+  p {
+    font-family: "Source Sans Pro";
+    font-size: 16px;
+    color: #0d1111;
+  }
+}
+.head {
+  font-family: "Source-Sans-Pro-SemiBold";
+  font-size: 30px;
+}
+.custom-h5 {
+  font-family: "Source Sans Pro";
+  font-size: 20px;
+  color: #17242a;
+}
+table th {
+  font-family: "Source-Sans-Pro-Bold";
+  font-size: 16px;
+}
+@media (min-width: 1270px) and (max-width: 1450px) {
+  .custom-h5 {
+    font-family: "Source Sans Pro";
+    font-size: 18px;
+    color: #17242a;
+  }
+  .double-column {
+    display: grid !important;
+    .res-space-evenly {
+      justify-content: space-evenly;
+      padding-top: 5px;
+    }
+  }
+  ::ng-deep tr td {
+    font-size: 14px !important;
+  }
+}
+.card-deck {
+  h5 {
+    margin-bottom: 0;
+  }
+}
+:host {
+  ::ng-deep ngb-pagination ul {
+    margin-bottom: 0 !important;
+  }
+}
+h6 {
+  font-family: "Source-Sans-Pro-Bold";
+  font-size: 18px;
+}
+.total-pages {
+  font-family: "Source Sans Pro";
+  font-size: 18px;
+  padding-left: 8px;
+}
+::ng-deep .mat-form-field-infix {
+  border-top: none;
+}
+.chart-data {
+  h5 {
+    font-family: "Source Sans Pro";
+    font-size: 20px;
+    color: #0d1111;
+  }
+  h4 {
+    font-family: "Source-Sans-Pro-Bold";
+    font-size: 16px;
+    color: #0d1111;
+  }
+}
+.graph-btn {
+  background-color: #0d1111;
+  font-family: "Source Sans Pro";
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 30px;
+  margin-right: 10px;
+}
+@media (min-width: 768px) {
+  .col-md-3 {
+    flex: 0 0 23%;
+    max-width: 23%;
+    // margin-left: 8px;
+  }
+}
+.home-btn {
+  width: 135px !important;
+}
+
+.dots {
+  p {
+    margin-bottom: 0;
+    color: #17242a;
+    font-family: "Source Sans Pro";
+    font-size: 16px;
+  }
+}

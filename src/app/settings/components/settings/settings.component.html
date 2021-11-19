@@ -1,0 +1,265 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 pl-0">
+        <div class="head">Settings</div>
+      </div>
+    </div>
+
+    <div class="row mx-2 mt-3">
+      <form class="w-100" [formGroup]="subscriptionAmountForm" *ngIf="subscriptionAmountForm"
+        (ngSubmit)="submitsubscriptionAmountForm()" #f novalidate>
+        <div class="col-md-12 bg-white pt-3 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Minimum Subscription Amount</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col-md-6 col-sm-12">
+                <label>Amount</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput min="0" type="number" placeholder="Enter..." name="textField"
+                    formControlName="textField" />
+                  <mat-error *ngIf="hasErrorTextfield('textField', 'required')">
+                    <span>Field is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row mt-3">
+              <div class="bg-white pt-2 pb-2 w-100">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <button type="submit" [disabled]="subscriptionAmountForm.invalid || isLoading" mat-flat-button
+                    class="save-btn text-white version-btn py-1">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form class="w-100" [formGroup]="freeGroupContentLimitForm" *ngIf="freeGroupContentLimitForm"
+        (ngSubmit)="submitfreeGroupContentLimitForm()" #f novalidate>
+        <div class="col-md-12 bg-white pt-3 pb-3 mt-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Free Groups Content Limit</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col-md-6 col-sm-12">
+                <label>Main Groups Limit</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput min="0" type="number" placeholder="Enter..."
+                    formControlName="free_main_group_limit" />
+                  <mat-error *ngIf="hasErrorfreeGroupContentLimitForm('free_main_group_limit', 'required')">
+                    <span>Field is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row pt-2">
+              <div class="col-md-6 col-sm-12">
+                <label>Video Limits</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput min="0" type="number" placeholder="Enter..." formControlName="free_video_limit" />
+                  <mat-error *ngIf="hasErrorfreeGroupContentLimitForm('free_video_limit', 'required')">
+                    <span>Field is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <mat-divider></mat-divider>
+            <div class="row mt-3">
+              <div class="bg-white pt-2 pb-2 w-100">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <button [disabled]="freeGroupContentLimitForm.invalid || isLoading" mat-flat-button
+                    class="save-btn text-white version-btn py-1">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form class="w-100" [formGroup]="groupImagesForm" *ngIf="groupImagesForm" (ngSubmit)="submitgroupImagesForm()" #f
+        novalidate>
+        <div class="col-md-12 bg-white pt-3 pb-3 mt-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Group Images</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col-md-3 col-sm-12">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label>Free Group Container Image</label>
+                </div>
+                <ngx-dropzone accept="image/jpeg,image/jpg,image/png,image/gif"
+                  (change)="onSelect($event, 'freeGroupFilesImg')" [multiple]="false" class="my-2">
+                  <ngx-dropzone-label>
+                    <div class="dropzone-label">
+                      <img src="assets/iconfinder_upload2_172620.svg" alt="" class="img-fluid" width="80px" />
+                      <h6>Drag & Drop</h6>
+                      <p>or</p>
+                      <button type="button" (click)="touch('freeGroupFilesImg')" mat-button>Browse</button>
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of freeGroupFilesImg"
+                    [file]="f" [removable]="true" (removed)="onRemove(f, 'freeGroupFilesImg')">
+                    <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+                  </ngx-dropzone-image-preview>
+                </ngx-dropzone>
+                <mat-error *ngIf="
+                    hasErrorgroupImagesForm('freeGroupFilesImg', 'required') &&
+                    groupImagesForm.controls.freeGroupFilesImg.touched
+                  ">
+                  <span>Image is required</span>
+                </mat-error>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label>Paid Group Container Image</label>
+                </div>
+                <ngx-dropzone accept="image/jpeg,image/jpg,image/png,image/gif"
+                  (change)="onSelect($event, 'paidGroupFilesImg')" [multiple]="false" class="my-2">
+                  <ngx-dropzone-label>
+                    <div class="dropzone-label">
+                      <img src="assets/iconfinder_upload2_172620.svg" alt="" class="img-fluid" width="80px" />
+                      <h6>Drag & Drop</h6>
+                      <p>or</p>
+                      <button type="button" (click)="touch('paidGroupFilesImg')" mat-button>Browse</button>
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-image-preview *ngFor="let f of paidGroupFilesImg" ngProjectAs="ngx-dropzone-preview"
+                    [removable]="true" [file]="f" (removed)="onRemove(f, 'paidGroupFilesImg')">
+                    <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+                  </ngx-dropzone-image-preview>
+                </ngx-dropzone>
+                <mat-error *ngIf="
+                    hasErrorgroupImagesForm('paidGroupFilesImg', 'required') &&
+                    groupImagesForm.controls.paidGroupFilesImg.touched
+                  ">
+                  <span>Image is required</span>
+                </mat-error>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row mt-3">
+              <div class="bg-white pt-2 pb-2 w-100">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <button [disabled]="groupImagesForm.invalid || isLoading" mat-flat-button
+                    class="save-btn text-white version-btn py-1">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form class="w-100" [formGroup]="IntroductionVideosForm" *ngIf="IntroductionVideosForm"
+        (ngSubmit)="submitIntroductionVideosForm()" #f novalidate>
+        <div class="col-md-12 bg-white pt-3 pb-3 mt-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Introduction Video</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col-md-3 col-sm-12">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label>English</label>
+
+                </div>
+                <mat-progress-bar *ngIf="englishVideoProgress>0" mode="determinate" [value]="englishVideoProgress">
+                </mat-progress-bar>
+                <ngx-dropzone [disabled]="fileUploading" accept="video/mp4,video/x-m4v,video/*"
+                  (change)="onSelect($event, 'introdVideoEnglishFiles')" [multiple]="false" class="my-2">
+                  <ngx-dropzone-label>
+                    <div class="dropzone-label">
+                      <img src="assets/iconfinder_upload2_172620.svg" alt="" class="img-fluid" width="80px" />
+                      <h6>Drag & Drop</h6>
+                      <p>or</p>
+                      <button type="button" [disabled]="fileUploading" (click)="touch('introdVideoEnglishFiles')"
+                        mat-button>Browse</button>
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-video-preview *ngFor="let f of introdVideoEnglishFiles" [file]="f"
+                    ngProjectAs="ngx-dropzone-preview" [removable]="true"
+                    (removed)="onRemove(f, 'introdVideoEnglishFiles')">
+                    <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+                  </ngx-dropzone-video-preview>
+                </ngx-dropzone>
+                <mat-error *ngIf="
+                    hasErrorIntroductionVideosForm('introdVideoEnglishFiles', 'required') &&
+                    IntroductionVideosForm.controls.introdVideoEnglishFiles.touched
+                  ">
+                  <span>Video is required</span>
+                </mat-error>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <div class="d-flex align-items-center justify-content-between">
+                  <label>Arabic</label>
+                </div>
+                <mat-progress-bar *ngIf="arabicVideoProgress>0" mode="determinate" [value]="arabicVideoProgress">
+                </mat-progress-bar>
+                <ngx-dropzone [disabled]="fileUploading" (change)="onSelect($event, 'introdVideoArabicFiles')"
+                  accept="video/mp4,video/x-m4v,video/*" [multiple]="false" class="my-2">
+                  <ngx-dropzone-label>
+                    <div class="dropzone-label">
+                      <img src="assets/iconfinder_upload2_172620.svg" alt="" class="img-fluid" width="80px" />
+                      <h6>Drag & Drop</h6>
+                      <p>or</p>
+                      <button type="button" [disabled]="fileUploading" (click)="touch('introdVideoArabicFiles')"
+                        mat-button>Browse</button>
+                    </div>
+                  </ngx-dropzone-label>
+                  <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview"
+                    *ngFor="let f of introdVideoArabicFiles" [file]="f" [removable]="true"
+                    (removed)="onRemove(f, 'introdVideoArabicFiles')">
+                    <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+                  </ngx-dropzone-video-preview>
+                </ngx-dropzone>
+                <mat-error *ngIf="
+                    hasErrorIntroductionVideosForm('introdVideoArabicFiles', 'required') &&
+                    IntroductionVideosForm.controls.introdVideoArabicFiles.touched
+                  ">
+                  <span>Video is required</span>
+                </mat-error>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row mt-3">
+              <div class="bg-white pt-2 pb-2 w-100">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <button
+                    [disabled]="IntroductionVideosForm.invalid || isLoading || englishVideoUploading || arabicVideoUploading"
+                    mat-flat-button class="save-btn text-white version-btn py-1">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & More.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

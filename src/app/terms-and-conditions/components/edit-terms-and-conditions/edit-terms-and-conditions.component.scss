@@ -1,0 +1,198 @@
+@import "../../../../assets/fonts/poppins/stylesheet.css";
+@import "../../../../assets/fonts/stylesheet.css";
+
+:host {
+  :is(h1, p, h2, h5) {
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    text-align: center;
+    padding: 1em;
+  }
+
+  .logo {
+    width: 150px;
+    margin: 0 auto;
+  }
+
+  q {
+    font-style: italic;
+    quotes: "« " " »";
+  }
+  .bg-color {
+    background-color: #0d1111;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .light-color {
+    background-color: #def2f1;
+  }
+  .action-btn {
+    border-radius: 0;
+  }
+  .example-card {
+    max-width: 400px;
+  }
+
+  .version-btn {
+    font-family: "Source Sans Pro" !important;
+    font-size: 16px;
+  }
+}
+.mat-content {
+  button {
+    font-family: "Source Sans Pro" !important;
+    font-size: 16px;
+  }
+  p {
+    font-family: "Source Sans Pro" !important;
+    font-size: 12px;
+    margin: 0;
+    color: #0d1111 !important;
+  }
+}
+.version-detail {
+  h5 {
+    font-family: "Source-Sans-Pro-Bold";
+    font-size: 20px;
+  }
+  p {
+    font-family: "Source Sans Pro";
+    font-size: 16px;
+    padding-top: 10px !important;
+  }
+}
+.sub-head {
+  font-family: "Source Sans Pro";
+  font-size: 21px;
+}
+.download-btn {
+  font-family: "Source Sans Pro";
+  font-size: 16px;
+}
+.article-detail {
+  max-height: 500px;
+  h3 {
+    font-family: "Source-Sans-Pro-Bold";
+
+    font-size: 25px;
+    color: #17242a;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  p {
+    font-family: "Source Sans Pro";
+
+    font-size: 20px;
+    color: #17242a;
+    padding-bottom: 8px;
+  }
+}
+mat-chip-list {
+  mat-chip {
+    border-radius: 5px;
+    background-color: #def2f1;
+    font-family: "Source Sans Pro" !important;
+    font-size: 16px;
+  }
+}
+.sub-head {
+  font-family: "Source Sans Pro";
+  font-size: 28px;
+}
+.bg-color {
+  background-color: #0d1111;
+}
+.main-color {
+  color: #0d1111;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 30%;
+  text-align: left !important;
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+.light-color {
+  background-color: #def2f1;
+}
+.action-btn {
+  border-radius: 0;
+}
+.mat-standard-chip {
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+}
+.mat-row:nth-child(odd) {
+  background-color: #def2f1;
+}
+.mat-chip.mat-standard-chip::after {
+  background: transparent;
+}
+.mat-header-cell {
+  font-size: 16px !important;
+  color: black;
+}
+// table.mat-table td.mat-cell {
+//   border-left: 1px rgba(0, 0, 0, 0.12) solid;
+//   padding: 0 24px !important;
+// }
+// table.mat-table th {
+//   border-left: 1px rgba(0, 0, 0, 0.12) solid;
+//   padding: 0 24px !important;
+// }
+form label {
+  font-family: "Source-Sans-Pro-Bold";
+  font-size: 20px;
+  // padding-bottom: 10px;
+}
+form mat-form-field {
+  font-size: 15px;
+}
+h6 {
+  font-family: "Source-Sans-Pro-Bold";
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+textarea {
+  font-family: "Source Sans Pro";
+  font-size: 20px;
+}
+.custom-page {
+  position: relative;
+  margin: 0;
+  padding-bottom: 5rem;
+  min-height: 100%;
+}
+:host {
+  ::ng-deep .title .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    // padding-bottom: 0 !important;
+    margin: 0;
+  }
+  ::ng-deep .title .mat-form-field-infix {
+    border-top: 0px !important;
+  }
+  ::ng-deep .title .mat-form-field-appearance-outline .mat-form-field-flex {
+    padding: 5px 0.75em 3px 0.75em !important;
+  }
+  ::ng-deep .title .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 1em 0 0.8em 0;
+  }
+}

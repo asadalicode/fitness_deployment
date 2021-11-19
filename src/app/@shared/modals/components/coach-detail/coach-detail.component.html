@@ -1,0 +1,173 @@
+<div class="modal-content">
+  <div class="modal-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <h4 class="mb-0">Coach Details</h4>
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true">
+        <img src="assets/cancel.png" width="20px" />
+      </span>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div *ngIf="coachDetail$ | async as coachDetail; else loading" class="modal-body pb-4 pt-1">
+    <mat-tab-group>
+      <mat-tab label="Personal">
+        <div fxLayout="row" fxLayoutAlign="center start">
+          <div fxFlex="column" class="pt-3">
+            <img
+              [src]="coachDetail?.image_url"
+              onerror="this.onerror=null;this.src='assets/profile.png';"
+              class="img-fluid"
+              width="60%"
+            />
+          </div>
+          <div fxFlex="column" class="pt-3">
+            <div>
+              <h6>Username</h6>
+              <p>{{ coachDetail?.user_name }}</p>
+            </div>
+            <div>
+              <h6>First name</h6>
+              <p>{{ coachDetail?.first_name }}</p>
+            </div>
+            <div>
+              <h6>Email</h6>
+              <p [title]="dataModel?.email">{{ coachDetail?.email | truncateString: 15 }}</p>
+            </div>
+            <div>
+              <h6>Last Name</h6>
+              <p>{{ coachDetail?.last_name }}</p>
+            </div>
+          </div>
+          <div fxFlex="column" class="pt-3">
+            <div>
+              <h6>Gender</h6>
+              <p>{{ coachDetail?.gender }}</p>
+            </div>
+            <div>
+              <h6>Country</h6>
+              <p>{{ dataModel?.country }}</p>
+            </div>
+            <div>
+              <h6>Phone no.</h6>
+              <p>{{ dataModel?.phone_number ? dataModel?.phone_number : '-' }}</p>
+            </div>
+            <div>
+              <h6>Workout program type</h6>
+              <p>{{ dataModel?.program_type }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Bank Account">
+        <div fxLayout="row" fxLayoutAlign="center start">
+          <div fxFlex="column" class="pt-3 min-height">
+            <div>
+              <h6>Full name</h6>
+              <p>{{ coachDetail?.full_name }}</p>
+            </div>
+            <div>
+              <h6>Bank name</h6>
+              <p>{{ coachDetail?.bank_name }}</p>
+            </div>
+            <div>
+              <h6>Bank swift code</h6>
+              <p>{{ coachDetail?.bank_swift_code }}</p>
+            </div>
+            <div>
+              <h6>IBAN number</h6>
+              <p>{{ coachDetail?.iban_number }}</p>
+            </div>
+          </div>
+          <div fxFlex="column" class="pt-3">
+            <div>
+              <h6>Country</h6>
+              <p>{{ coachDetail?.country_name }}</p>
+            </div>
+            <div>
+              <h6>Account number</h6>
+              <p>{{ coachDetail?.account_number }}</p>
+            </div>
+            <div>
+              <h6>Account Currency</h6>
+              <p>{{ coachDetail?.account_currency }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Document">
+        <div fxLayout="row" fxLayoutAlign="center start">
+          <div fxFlex="column" class="pt-3 min-height">
+            <div>
+              <h6>Document Type</h6>
+              <p>{{ coachDetail?.document_type }}</p>
+            </div>
+            <div>
+              <h6>Expiry Date</h6>
+              <p>{{ coachDetail?.expiry_date }}</p>
+            </div>
+          </div>
+          <div fxFlex="column" class="pt-3">
+            <div>
+              <h6>Document Number</h6>
+              <p>{{ coachDetail?.document_number }}</p>
+            </div>
+            <div>
+              <h6 class="pb-1">Images</h6>
+              <img
+                [src]="coachDetail?.document_image"
+                onerror="this.onerror=null;this.src='assets/sign.png';"
+                alt=""
+                width="100px"
+              />
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Contract">
+        <div fxLayout="row" fxLayoutAlign="space-between start ">
+          <div
+            fxLayout="row"
+            fxFlexFill
+            fxLayout.xs="column-reverse"
+            class="pt-3 min-height"
+            fxLayoutAlign="space-between start "
+          >
+            <div>
+              <h6 class="pb-2">Signature</h6>
+              <p>
+                <img
+                  [src]="coachDetail?.signature"
+                  onerror="this.onerror=null;this.src='assets/sign.png';"
+                  alt=""
+                  width="200px"
+                />
+              </p>
+            </div>
+            <button
+              mat-flat-button
+              (click)="downloadContract(coachDetail?.id)"
+              class="save-btn text-white version-btn mt-4"
+              [disabled]="!coachDetail.signature"
+            >
+              Download contract in pdf
+            </button>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <mat-divider></mat-divider>
+    <div>
+      <mat-dialog-actions class="d-flex justify-content-start" fxLayoutGap="20px">
+        <button mat-button mat-dialog-close>Close</button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div *ngIf="isBusy" class="col-md-12 pt-5 justify-content-center d-flex">
+      <app-loader [size]="1.5" class="inline-loader" [isLoading]="isBusy"></app-loader>
+    </div>
+  </ng-template>
+</div>

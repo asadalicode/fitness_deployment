@@ -1,0 +1,58 @@
+image: codesorbit/angular-ci:1.0
+
+stages:
+  - test
+  - build
+  - deploy
+
+before_script:
+  - npm ci
+  - npm run env
+
+cache:
+  key: ${CI_PROJECT_ID}
+  paths:
+    - node_modules/
+
+#lint-test:
+#  stage: test
+#  tags:
+#    - angular
+#  only:
+#    - master
+#  script:
+#    - npm run lint
+#  allow_failure: true
+
+production-build:
+  stage: build
+  tags:
+    - angular
+  only:
+    - master
+  script:
+    - ng build --prod
+  artifacts:
+    paths:
+      - dist/
+
+
+server-deploy:
+  stage: deploy
+  tags:
+    - angular
+  only:
+    - master
+  dependencies:
+    - production-build
+  before_script:
+    - apt update
+    - apt install -y openssh-client
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - scp -r dist/* ubuntu@$DEPLOY_SERVER:/var/www/fitness_web_frontend/dist
+  environment:
+    name: production

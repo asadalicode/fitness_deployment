@@ -1,0 +1,92 @@
+<div class="modal-content">
+  <div class="modal-header align-items-center">
+    <h4 class="mb-0 payout-head">{{ component === 'Payouts' ? 'Add Payout' : 'Update Payout' }}</h4>
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true"> <img src="assets/cancel.png" width="20px" /></span>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="modal-body pb-4 pt-1">
+    <div>
+      <form class="w-100 payout-form" (ngSubmit)="lookUpComponent()" [formGroup]="Form" #f novalidate>
+        <!-- <input style="display: none;" matInput formControlName="id" type="text" placeholder="Enter...." min="0" /> -->
+
+        <div>
+          <label>Coach username</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select formControlName="coach_id" placeholder="-Select-">
+              <mat-option *ngFor="let item of usersList" [value]="item?.id">
+                {{ item?.user_name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('coach_id', 'required')">
+              <span>Coach username is required</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <label>Amount</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="amount" type="number" placeholder="Enter...." min="0" />
+            <mat-error *ngIf="hasError('amount', 'required')">
+              <span>Amount is required</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label>Last Statement Date</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="last_statement_date" [matDatepicker]="picker" placeholder="Enter...." />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="hasError('last_statement_date', 'required')">
+              <span>Last statement date is required</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label>Total Subscribers</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="total_subscribers" type="number" placeholder="Enter...." min="0" />
+            <mat-error *ngIf="hasError('last_statement_date', 'required')">
+              <span>Total subscribers are required</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <label>Total Coach Share</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="text" min="0" formControlName="total_coach_share" placeholder="Enter..." />
+            <mat-error *ngIf="hasError('total_coach_share', 'required')">
+              <span>Coach share is required</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="inline-grid position-relative pb-2">
+          <label>Upload pdf</label>
+          <mat-progress-bar class="mb-1" *ngIf="percent>0" mode="determinate" [value]="percent"></mat-progress-bar>
+          <div>
+            <button mat-flat-button class="upload-btn-modal" (click)="fileInput.click(); touch(); (false)">
+              Upload
+            </button>
+            <span> &nbsp; &nbsp; {{ Form.value.statement_pdf.name }}</span>
+          </div>
+
+          <input #fileInput (change)="upload($event)" accept="application/pdf,application/vnd.ms-excel"
+            style="visibility: hidden; display: contents" multiple type="file" />
+          <mat-error *ngIf="hasError('statement_pdf', 'required') && Form.controls.statement_pdf.touched">
+            <span>Pdf is required</span>
+          </mat-error>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-dialog-actions class="d-flex justify-content-between pt-3">
+          <button mat-button type="button" mat-dialog-close>Close</button>
+          <button mat-button type="submit" cdkFocusInitial class="clicked" [disabled]="isLoading || fileUploading ">
+            {{ component === 'Payouts' ? 'Add' : 'Save' }}
+          </button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </div>
+</div>

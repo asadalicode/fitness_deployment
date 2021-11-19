@@ -1,0 +1,89 @@
+/*
+ * Application global variables.
+ */
+
+// Angular Material custom theme
+// See https://material.angular.io/guide/theming for more details.
+//
+// You can also read https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1
+// for more insight about Angular Material theming.
+
+@import "~@angular/material/theming";
+
+@import "~ngx-multiple-dates/theming"; // import library theme
+
+@include mat-core();
+// Palette
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink);
+
+$theme: mat-light-theme($primary, $accent); // theme
+@include angular-material-theme($theme); // apply Angular Material styles
+@include ngx-multiple-dates-theme($theme);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$app-primary: mat-palette($mat-blue);
+// stylelint-disable-next-line value-keyword-case
+$app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Material design icons font path
+$material-design-icons-font-directory-path: "~material-design-icons-iconfont/dist/fonts/";
+
+$primary: #0d1111;
+$white-color: #fff;
+$bg-color: #0d1111;
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
+.mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: #0d1111 !important;
+}
+.mat-drawer {
+  background-color: #17242a !important;
+}
+.mat-list-base .mat-list-item {
+  color: #fff !important;
+}
+.mat-drawer-container {
+  background-color: #f5eeee;
+}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #0d1111 !important;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: #0d1111 !important;
+}
+
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
+  background: #0d1111 !important;
+}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #0d1111 !important;
+}
+$text-toggle: #0d1111;
+:host {
+  ::ng-deep .mat-checkbox-frame {
+    border-color: #dddddd !important;
+  }
+  ::ng-deep .mat-radio-outer-circle {
+    border-color: #dddddd !important;
+  }
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: #0d1111;
+  }
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: white;
+    border: 1px solid #0d1111 !important;
+  }
+}

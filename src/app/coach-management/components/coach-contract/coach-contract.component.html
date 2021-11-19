@@ -1,0 +1,136 @@
+<div class="page custom-page mx-5">
+  <div class="container-fluid" id="htmlData" #htmlData>
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 pl-0">
+        <!-- <div class="head">Coach Contract</div> -->
+        <div fxLayout="row" class="pt-2 pb-4" fxLayoutAlign="space-between center">
+          <h3 class="h1Text">Partner Terms & Conditions</h3>
+          <h3>Dated:{{ date | date }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="row mx-2 mt-3 p-4">
+      <p id="contract"></p>
+      <div>
+        <h1>Partner Details</h1>
+
+        <p><b>Partner Full Name:</b> {{ data?.full_name }}</p>
+        <p><b>Username:</b> {{ data?.user_name }}</p>
+        <p><b>Date:</b> {{ data?.signed_date | date }}</p>
+
+        <img [src]="data?.signature" onerror="this.onerror=null;this.src='assets/sign.png';" alt="" width="200px" />
+
+        <p>Signature</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 d-flex justify-content-end">
+    <button type="submit" mat-flat-button class="save-btn text-white version-btn py-1 bg-dark" (click)="openPDF()">
+      Download
+    </button>
+  </div>
+</div>
+
+<!-- <div class="page custom-page" id="htmlData" #htmlData>
+  <div class="aligntext">
+    <div fxLayout="row" class="pt-2 pb-4" fxLayoutAlign="space-between center">
+      <h1 class="h1Text">COACH CONTRACT</h1>
+      <h1>{{ date | date }}</h1>
+    </div>
+    <div>
+      <p>
+        This Personal Training Contract is individually referred to as the “Party”, and collectively the “Parties.”<br />
+        1.&emsp;&emsp;Terms and Conditions. The Parties agree to the following terms and conditions: <br />
+        a.&emsp;&emsp;The Client is engaging the Company for personal training services to be provided by the trainer.
+        <br />
+        b.&emsp;&emsp;Personal Training sessions will last 10 minutes. <br />
+        c.&emsp;&emsp;<b
+          >The Trainer will create an exercise program geared to the Client’s fitness level and experience in order to
+          meet the Client’s objectives.</b
+        ><br />
+        d.&emsp;&emsp;The Trainer will be assigned to the Client by the Company and is subject to change at any time.
+        The Client may request a new Trainer and the Company will make every effort to accommodate if circumstances
+        allow. <br />
+        e.&emsp;&emsp;The Client agrees to sign the attached Informed Consent and Assumption of Risk and Release of
+        Liability. <br />
+        f.&emsp;&emsp;The Client agrees to inform the Company and its Trainer(s) of any and all conditions, medical
+        <b>or otherwise, that may affect the Client’s ability to participate in Training Sessions.</b> <br />
+        2.&emsp;&emsp;Training Sessions. Training Sessions may include, but are not limited to, the following
+        activities: testing of physical fitness; exercise; aerobics and aerobic conditioning; cardiovascular training;
+        weight lifting and training; and stretching. <br />
+        3.&emsp;&emsp;Cancellation of Training Session. The Client shall provide twenty-four (24) hour notice of any
+        necessary cancellation of a scheduled Training Session. Failure to provide twenty-four (24) hour notice shall
+        result in the Client being charged the full rate for the cancelled/missed Training Session. The Company and its
+        Trainer(s) will endeavor to also provide the Client twenty-four (24) hour notice of any scheduled Training
+        Session that may need to be cancelled; however, there may be instances where this is not practicable, and such
+        would not constitute breach of this Contract on behalf of the Company .4.&emsp;&emsp;Indemnity. The Client
+        agrees to indemnify and hold harmless the Company and its Trainer(s)
+        <b> any injuries, illnesses, and the like experienced as the result of the Client’s Training Sessions.</b>
+        <br />
+        5.&emsp;&emsp;Termination. Either Party may terminate this Contract upon thirty (30) days prior written notice
+        to the other Party. In the event of termination by either Party, the Company shall refund the Client all monies
+        paid for any unused Training Sessions. <br />
+        6.&emsp;&emsp;Warranties. While the Company and its Trainer(s) fully believe exercise,
+        <b
+          >specifically exercised personalized to the Client, is beneficial to the Client’s health and wellness, the
+          Company </b
+        >and its Trainer(s) cannot guarantee the results of Training Sessions. The Company and its Trainer(s)make no
+        representations and/or warranties that the Client will lose weight, gain muscle mass, be able to engage in any
+        specific physical and/or athletic activity, or will attain any other particular and/or specificresults. The
+        Company and its Trainer(s) strongly encourage the Client to follow a healthy diet in conjunction with personal
+        training and continued exercise. <br />
+        7.&emsp;&emsp;Entire Agreement. This document reflects the entire agreement between the Parties and reflects a
+        complete understanding of the Parties with respect to the subject matter. This Contract supersedes all prior
+        written and oral representations. The Contract may not be amended, altered, or supplemented except in writing
+        signed by both the Company and the Client. <br />
+        8.&emsp;&emsp;Dispute Resolution and Legal Fees. In the event of a dispute arising out of this Contract that
+        cannot be resolved by mutual agreement, the Parties agree to engage in mediation. If the matter cannot be
+        resolved through mediation, and legal action ensues, the successful Party will be entitled
+        <b>to its legal fees, including, but not limited to its attorneys’ fees.</b> <br />
+        9.&emsp;&emsp;Legal and Binding Contract. This Contract is legal and binding between the Parties as stated
+        above. This Contract may be entered into and is legal and binding both in the United States and throughout
+        Europe. The Parties each represent that they have the authority to enter into this Contract. <br />
+        10. &emsp;&emsp;Severability. If any provision of this Contract shall be held to be invalid or unenforceable for
+        any reason,the remaining provisions shall continue to be valid and enforceable. If the Court finds that any
+        provision of this Contract is invalid or unenforceable, but that by limiting such provision it would become
+        valid and enforceable, then such provision shall be deemed to be written, construed, and enforced as so limited.
+        <br />
+        11. &emsp;&emsp;Waiver. The failure of either Party to enforce any provision of this Contract shall not be
+        <b
+          >construed as a waiver or limitation of that Party’s right to subsequently enforce and compel strict
+          compliance with every provision of this Contract.</b
+        >
+        <br />
+        12. &emsp;&emsp;Applicable Law. This Contract shall be governed and construed in accordance with the laws of the
+        state where the Training Sessions will occur, without giving effect to any conflicts of laws provisions. <br />
+        BY SIGNING BELOW, THE CLIENT ACKNOWLEDGES HAVING READ AND UNDERSTOOD THIS CONTRACT AND THAT THE CLIENT IS
+        SATISFIED WITH THE TERMS AND CONDITIONS CONTAINED IN THIS CONTRACT. THE CLIENT SHOULD NOT SIGN THIS CONTRACT IF
+        THERE ARE ANY BLANK SPACES. THE CLIENT ISENTITLED TO A COPY OF THIS CONTRACT AT THE TIME OF SIGNATURE. <br />
+        The Parties agree to the terms and conditions set forth above as demonstrated by their signatures as follows
+        <br />
+      </p> 
+
+      <p>{{coach_contract.coach_contract_english}}</p>
+      <p>{{coach_contract.coach_contract_arabic}}</p>
+    </div>
+    <div>
+      <h1>Coach Details</h1>
+
+      <img [src]="data?.signature" onerror="this.onerror=null;this.src='assets/sign.png';" alt="" width="200px" />
+      <p>Signatures</p>
+
+      <p>
+        Name: <b>{{ data?.user_name }}</b>
+      </p>
+      <p>
+        Date: <b>{{ data?.signed_date |date}}</b>
+      </p>
+    </div>
+
+    <div class="col-md-12 d-flex justify-content-end">
+      <button type="submit" mat-flat-button class="save-btn text-white version-btn py-1 bg-dark" (click)="openPDF()">
+        Download Contract
+      </button>
+    </div>
+  </div>
+</div> -->

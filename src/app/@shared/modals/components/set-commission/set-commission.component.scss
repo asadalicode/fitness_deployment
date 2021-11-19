@@ -1,0 +1,105 @@
+:host {
+  ::ng-deep .mat-form-field-infix {
+    border-top: 0px !important;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+    padding: 5px 0.75em 3px 0.75em !important;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 1em 0 0.8em 0;
+  }
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: white;
+    border: 1px solid #0d1111 !important;
+  }
+  ::ng-deep .mat-radio-outer-circle {
+    border-color: #dddddd !important;
+  }
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: #0d1111;
+  }
+}
+
+.coach-left {
+  h4 {
+    font-family: "Source-Sans-Pro-Bold" !important;
+    font-size: 18px;
+  }
+  mat-slide-toggle {
+    font-family: "Source Sans Pro" !important;
+    font-size: 16px;
+  }
+}
+.m-sel-btn button {
+  font-family: "Source-Sans-Pro-Bold" !important;
+  font-size: 16px;
+}
+.m-sel mat-option {
+  font-family: "Source Sans Pro" !important;
+  font-size: 14px;
+}
+.mat-chip.mat-standard-chip::after {
+  background: transparent;
+}
+.mat-standard-chip {
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+}
+.modal-body {
+  h6 {
+    font-size: 18px;
+    font-family: "Source-Sans-Pro-Bold" !important;
+    margin-bottom: 0px;
+  }
+  p {
+    font-size: 18px;
+    font-family: "Source Sans Pro" !important;
+    margin-bottom: 8px;
+  }
+  button {
+    border: 1px solid #dddddd;
+  }
+}
+::ng-deep .mat-tab-label {
+  padding: 10px !important;
+  min-width: auto !important;
+  border-radius: 5px;
+  background: #d9d9d9;
+  font-family: "Source-Sans-Pro-Bold" !important;
+  color: #ffffff;
+  margin-right: 10px;
+  height: auto !important;
+}
+::ng-deep mat-tab-header {
+  border-bottom: none !important;
+}
+::ng-deep mat-ink-bar {
+  visibility: hidden !important;
+}
+.min-height {
+  min-height: 232px !important;
+}
+mat-tab-group mat-tab .mat-tab-label-active {
+  background-color: #5d5d5d !important;
+}
+.label-active {
+  background-color: #5d5d5d !important ;
+}
+.same-height {
+  height: 208px !important;
+}
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  background-color: #5d5d5d !important ;
+  opacity: 1;
+}
+
+::ng-deep .multiselect-dropdown {
+  .dropdown-list {
+    width: 37vw !important;
+    position: fixed !important;
+    @media screen and (max-width: 767px) {
+      width: 70% !important;
+    }
+  }
+}

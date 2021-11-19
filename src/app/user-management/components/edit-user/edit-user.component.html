@@ -1,0 +1,125 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 pl-0">
+        <div class="head">User Management</div>
+      </div>
+    </div>
+    <div class="row mx-2 mt-3">
+      <form class="w-100" (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
+        <div class="col-md-12 bg-white pt-3 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Edit User</h5>
+            <div fxLayoutGap="15px" fxLayout="row" fxLayoutAlign="center center" class="coach-left">
+              <h4>Activity Status</h4>
+              <mat-slide-toggle (click)="toggleStatus()" formControlName="is_verified">Active</mat-slide-toggle>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col">
+                <label>Username</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="user_name" />
+                  <mat-error *ngIf="hasError('user_name', 'required')">
+                    <span>Username is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Email</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="email" />
+                  <mat-error *ngIf="hasError('email', 'required')">
+                    <span>Email is required</span>
+                  </mat-error>
+                  <mat-error *ngIf="hasError('email', 'email')">
+                    <span>Invalid email</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col-md-3">
+                <label>First name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="first_name" />
+                  <mat-error *ngIf="hasError('first_name', 'required')">
+                    <span>First name is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <label>Last name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="last_name" />
+                  <mat-error *ngIf="hasError('last_name', 'required')">
+                    <span>Last name is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Country</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="country_id" placeholder="-Select-">
+                    <mat-option *ngFor="let item of CountryCodes$ | async" [value]="item.id">
+                      {{ item.title }}
+                    </mat-option>
+                  </mat-select>
+
+                  <mat-error *ngIf="hasError('country_id', 'required')">
+                    <span>Country is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col">
+                <label class="w-100 pb-2">Gender</label>
+                <mat-radio-group formControlName="gender" aria-label="Select an option" fxLayoutGap="35px">
+                  <mat-radio-button value="Male">Male</mat-radio-button>
+                  <mat-radio-button value="Female">Female</mat-radio-button>
+                  <mat-radio-button value="Other">Other</mat-radio-button>
+                </mat-radio-group>
+              </div>
+
+              <div class="col">
+                <label>Contact Number</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="phone_number" />
+                  <mat-icon matPrefix class="pr-5">phone</mat-icon>
+                  <mat-error *ngIf="hasError('phone_number', 'required')">
+                    <span>Phone number is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <mat-divider></mat-divider>
+            <div class="row mt-3">
+              <div class="bg-white pt-2 pb-2 w-100">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <button
+                    [disabled]="Form.invalid || isLoading"
+                    mat-flat-button
+                    class="save-btn text-white version-btn py-1"
+                  >
+                    {{ type == 'Edit' ? 'Save' : 'Add New' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & More.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

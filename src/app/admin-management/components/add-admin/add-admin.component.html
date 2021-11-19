@@ -1,0 +1,120 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 pl-0">
+        <div class="head">Admin Management</div>
+      </div>
+    </div>
+    <div class="row mx-2 mt-3">
+      <div *ngIf="isBusy" class="col-md-12 pt-5 justify-content-center d-flex">
+        <app-loader [size]="1.5" class="inline-loader" [isLoading]="isLoading"></app-loader>
+      </div>
+      <form *ngIf="!isBusy" class="w-100" [formGroup]="Form" #f novalidate (ngSubmit)="submit()">
+        <div class="col-md-12 bg-white pt-3 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">{{ type == 'Edit' ? 'Edit' : 'Add New' }} Admin</h5>
+            <div fxLayoutGap="15px" fxLayout="row" fxLayoutAlign="center center" class="coach-left">
+              <h4>Activity Status</h4>
+              <mat-slide-toggle formControlName="is_active"
+                >{{ Form.value.is_active ? 'Active' : 'Inactive' }}
+              </mat-slide-toggle>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col">
+                <label>Name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="name" />
+                  <mat-error *ngIf="hasError('name', 'required')">
+                    <span>Full Name is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Email</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="email" />
+                  <mat-error *ngIf="hasError('email', 'required')">
+                    <span>Email is required</span>
+                  </mat-error>
+                  <mat-error *ngIf="hasError('email', 'email')">
+                    <span>Invalid email</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col">
+                <label>Password</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="password" type="password" />
+                  <mat-error *ngIf="hasError('password', 'required')">
+                    <span>Password is required</span>
+                  </mat-error>
+                  <mat-error *ngIf="hasError('password', 'minlength')">
+                    <span>Password must be more than 4 letters</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Role</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="role" />
+                  <mat-error *ngIf="hasError('role', 'required')">
+                    <span> Enter role</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <section>
+              <div class="row">
+                <div class="pl-3">
+                  <label> Page Permissions</label>
+                  <div fxLayout="row wrap" class="py-3">
+                    <div
+                      class="flex-checkbox"
+                      formArrayName="permissions"
+                      fxLayoutAlign="space-between center"
+                      *ngFor="let permission of permissionsFormArray.controls; let i = index"
+                    >
+                      <mat-checkbox type="checkbox" [formControlName]="i">
+                        {{ permissionsData[i]?.name | titlecase }}
+                      </mat-checkbox>
+                    </div>
+                    <mat-error *ngIf="hasError('permissions', 'required')">
+                      <span> Select atleast one checkbox</span>
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <mat-divider></mat-divider>
+            <div class="row mt-3">
+              <div class="bg-white pt-2 pb-2 w-100">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <button
+                    [disabled]="Form.invalid || isLoading"
+                    mat-flat-button
+                    class="save-btn text-white version-btn py-1"
+                  >
+                    {{ type == 'Edit' ? 'Save' : 'Add New' }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & More.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

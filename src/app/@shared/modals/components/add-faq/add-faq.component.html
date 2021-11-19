@@ -1,0 +1,37 @@
+<div class="modal-content">
+  <div class="modal-header align-items-center">
+    <!-- <h4 class="mb-0 payout-head">Add FAQs</h4> -->
+    <h4 class="mb-0 payout-head">{{ dataObject?.type == 'add-faq' ? 'Add' : 'Edit' }} FAQs</h4>
+
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true"> <img src="assets/cancel.png" width="20px" /></span>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="modal-body pb-4 pt-1">
+    <div>
+      <form class="w-100 payout-form" (ngSubmit)="lookUpComponent()" [formGroup]="Form" #f novalidate>
+        <div>
+          <label>Question</label>
+          <mat-form-field class="example-full-width w-100" appearance="outline">
+            <textarea rows="5" matInput placeholder="Enter...."></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <label>Answer</label>
+          <mat-form-field class="example-full-width w-100" appearance="outline">
+            <textarea rows="5" matInput placeholder="Enter...."></textarea>
+          </mat-form-field>
+        </div>
+
+        <mat-divider></mat-divider>
+        <mat-dialog-actions class="d-flex justify-content-between pt-3">
+          <button mat-button type="button" mat-dialog-close>Close</button>
+          <button mat-button type="submit" cdkFocusInitial class="clicked" [disabled]="Form.invalid || isLoading">
+            {{ dataObject?.type == 'add-faq' ? 'Add new' : 'Save' }}
+          </button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </div>
+</div>

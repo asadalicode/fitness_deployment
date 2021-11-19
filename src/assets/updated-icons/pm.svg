@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22.978" height="23" viewBox="0 0 22.978 23">
+  <g id="Profession_Management" data-name="Profession Management" transform="translate(53.798 -143.007)">
+    <rect id="Rectangle_15" data-name="Rectangle 15" width="22.977" height="23" transform="translate(-53.798 143.007)" fill="#fff" opacity="0"/>
+    <g id="portfolio" transform="translate(-53.798 144.007)">
+      <path id="Path_84877" data-name="Path 84877" d="M211,240h4.039v1.346H211Zm0,0" transform="translate(-201.531 -229.229)" fill="#fff"/>
+      <path id="Path_84878" data-name="Path 84878" d="M18.641,86.053H14.855v.673a.673.673,0,0,1-.673.673H8.8a.673.673,0,0,1-.673-.673v-.673H4.336a2.017,2.017,0,0,1-1.916-1.381L0,77.41v14.7a2.022,2.022,0,0,0,2.02,2.019H20.958a2.022,2.022,0,0,0,2.02-2.019v-14.7l-2.421,7.262A2.017,2.017,0,0,1,18.641,86.053Zm0,0" transform="translate(0 -73.936)" fill="#fff"/>
+      <path id="Path_84879" data-name="Path 84879" d="M38.832,0H33.447a2.022,2.022,0,0,0-2.02,2.02v.673H25.809l2.539,7.618a.673.673,0,0,0,.639.46h3.787V10.1a.673.673,0,0,1,.673-.673h5.385a.673.673,0,0,1,.673.673v.673h3.787a.673.673,0,0,0,.639-.46L46.47,2.693H40.852V2.02A2.022,2.022,0,0,0,38.832,0ZM32.774,2.693V2.02a.674.674,0,0,1,.673-.673h5.385a.674.674,0,0,1,.673.673v.673Zm0,0" transform="translate(-24.651)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

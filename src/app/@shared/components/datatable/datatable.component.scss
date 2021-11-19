@@ -1,0 +1,106 @@
+@import "../../../../assets/fonts/poppins/stylesheet.css";
+@import "../../../../assets/fonts/stylesheet.css";
+
+.container {
+  text-align: center;
+  padding: 1em;
+}
+
+// ::ng-deep .cke_chrome {
+//   border: none !important;
+// }
+
+// ::ng-deep .cke_top {
+//   display: none !important;
+// }
+
+// ::ng-deep .cke_bottom {
+//   display: none !important;
+// }
+
+// ::ng-deep .cke_contents {
+//   height: 70px !important;
+//   background-color: #f6f6f6 !important;
+// }
+
+// ::ng-deep .cke_editable {
+//   background: #f6f6f6 !important;
+// }
+
+.logo {
+  width: 150px;
+  margin: 0 auto;
+}
+
+q {
+  font-style: italic;
+  quotes: "« " " »";
+}
+.bg-color {
+  background-color: #0d1111;
+}
+
+.main-color {
+  color: #2b7a78;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.svg-icon {
+  width: auto !important;
+}
+
+td,
+th {
+  width: 30%;
+  // text-align: left !important;
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+.light-color {
+  background-color: #f6f6f6;
+}
+.action-btn {
+  border-radius: 0;
+}
+.mat-standard-chip {
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+}
+.mat-row:nth-child(odd) {
+  background-color: #f6f6f6;
+}
+.mat-chip.mat-standard-chip::after {
+  background: transparent;
+}
+.mat-header-cell {
+  font-size: 18px !important;
+  color: black;
+}
+table.mat-table td.mat-cell {
+  border-left: 1px rgba(0, 0, 0, 0.12) solid;
+  padding: 0 24px !important;
+}
+table.mat-table th {
+  border-left: 1px rgba(0, 0, 0, 0.12) solid;
+  padding: 0 24px !important;
+}
+.custom-page {
+  padding-bottom: 80px;
+}
+.unresolve-btn {
+  background-color: #5d5d5d !important;
+  color: #fff;
+}
+.upload-btn {
+  background-color: #dfdfdf;
+}

@@ -1,0 +1,238 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mt-3">
+      <div class="col-md-12 d-flex justify-content-between align-items-center">
+        <div class="head">Chat</div>
+        <button
+          *ngIf="!monitorChatsEnabled && credentials['is_super_admin']"
+          style="margin-left: 44vw"
+          class="swipe-bg save-btn text-white version-btn"
+          (click)="monitorUsersChat()"
+        >
+          Monitor Chats
+        </button>
+        <ng-container *ngIf="!monitorChatsEnabled; else backToChat">
+          <div class="swipe-bg filterby" fxLayoutGap="10px">
+            <button mat-flat-button class="save-btn text-white version-btn" (click)="onTypeClicked('User')">
+              <input checked type="radio" id="persons" name="filterby" hidden />
+              <label for="persons"> User </label>
+            </button>
+            <button
+              mat-flat-button
+              class="save-btn disabled-btn text-white version-btn"
+              (click)="onTypeClicked('Coach')"
+            >
+              <input type="radio" id="companies" name="filterby" hidden />
+              <label for="companies">Coach </label>
+            </button>
+          </div>
+        </ng-container>
+        <ng-template #backToChat>
+          <button mat-flat-button class="save-btn disabled-btn text-white version-btn" (click)="onTypeClicked('User')">
+            Back to chats
+          </button>
+        </ng-template>
+      </div>
+    </div>
+    <div fxLayout="row" class="inbox mt-3" fxLayoutGap="10px">
+      <div class="inbox-users">
+        <!-- search -->
+        <div class="search-box">
+          <div class="form-group p-2">
+            <input
+              (focus)="searchEnabled = true"
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              #searchInput
+              (click)="SearchAllUsers($event.target.value)"
+              (input)="SearchAllUsers($event.target.value)"
+            />
+            <mat-icon *ngIf="searchEnabled == true" (click)="closeSearch()">clear</mat-icon>
+          </div>
+          <hr />
+          <div class="recent-messages">
+            <div class="checkbox" ngbDropdown *ngIf="userType !== 'User' && searchEnabled">
+              <!-- <input type="checkbox" (change)="selectAll($event.target.checked)" />
+              <label ngbDropdownToggle>{{ selectedCategory }}</label> -->
+              <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem *ngFor="let item of categories | async" [id]="item.id"
+                (click)="changeCategories(item)">
+                {{ item.name }}
+              </button>
+            </div> -->
+            </div>
+            <div *ngIf="!searchEnabled"></div>
+            <div class="p-5" *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center center">
+              <app-loader [isLoading]="true" size="1.5"></app-loader>
+            </div>
+
+            <!-- recent messages list  -->
+            <ng-container *ngIf="!searchEnabled">
+              <div *ngFor="let item of recentMessagesList; trackBy: trackByMessage" class="people">
+                <div class="checkbox" fxLayout="row" fxLayoutAlign="start center" *ngIf="item?.id != undefined">
+                  <input
+                    name="User"
+                    (click)="selectedChat(item)"
+                    type="radio"
+                    [id]="item.id"
+                    [hidden]="!searchEnabled"
+                  />
+                  <label [for]="item.id" fxLayout="row" fxLayoutGap="10px">
+                    <div class="image" *ngIf="!monitorChatsEnabled">
+                      <img
+                        [src]="item.thumbnail"
+                        alt=""
+                        style="height: 50px; width: 50px"
+                        onError="this.src='https://via.placeholder.com/50'"
+                      />
+                      <span [ngClass]="item?.isOnline == true ? 'status_image_online' : 'status_image_offline'"></span>
+                    </div>
+                    <div [class]="monitorChatsEnabled ? 'details pl-3' : 'details'">
+                      <h5
+                        class="text-truncate"
+                        [innerHtml]="monitorChatsEnabled ? item.name : (item.name | truncateString: 15)"
+                      ></h5>
+                      <p class="text-truncate" [style.font-weight]="item?.isBold ? 'bold' : '100'">
+                        {{ item.message | truncateString: 15 }}
+                      </p>
+                      <span class="message-time">{{ item.time | date: 'shortTime' }}</span>
+                      <span class="counter" *ngIf="item.messageCounter !== 0">{{ item.messageCounter }}</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- search result  -->
+            <ng-container *ngIf="searchEnabled">
+              <div *ngFor="let item of recentMessagesList; let i = index" class="people multi">
+                <div class="checkbox" fxLayout="row" fxLayoutAlign="start center" *ngIf="item?.id != undefined">
+                  <input type="radio" hidden [id]="item?.id" name="User" (click)="selectedChat(item)" />
+                  <label [for]="item?.id" fxLayout="row" fxLayoutGap="10px">
+                    <div *ngIf="!monitorChatsEnabled" class="image">
+                      <img
+                        [src]="item[i]?.thumbnail"
+                        alt=""
+                        style="height: 50px; width: 50px"
+                        onError="this.src='https://via.placeholder.com/50'"
+                      />
+                      <span [ngClass]="item?.isOnline == true ? 'status_image_online' : 'status_image_offline'"></span>
+                    </div>
+                    <div [class]="!monitorChatsEnabled ? 'details' : 'details pl-3'">
+                      <h5 [innerHtml]="monitorChatsEnabled ? item?.name : (item?.name | truncateString: 15)"></h5>
+                      <p class="text-truncate">
+                        {{ item?.message | truncateString: 10 }}
+                      </p>
+                      <span class="message-time">{{ item?.time | date: 'shortTime' }}</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <!-- list -->
+      </div>
+      <div class="chat-history">
+        <!--  User company or user chat history -->
+        <ng-container *ngIf="!searchEnabled">
+          <div class="heading" fxLayout="row" fxLayoutGap="10px">
+            <div class="image" *ngIf="!monitorChatsEnabled">
+              <img
+                [src]="selectedChatData?.thumbnail"
+                style="height: 50px; width: 50px"
+                alt=""
+                onError="this.src='https://via.placeholder.com/50'"
+              />
+            </div>
+            <div class="details">
+              <h5 [innerHtml]="!monitorChatsEnabled ? selectedChatData?.name : selectedChatTitle"></h5>
+              <div class="status">{{ selectedChatData?.online }}</div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="searchEnabled">
+          <div class="heading multi" fxLayout="row" fxLayoutGap="10px">
+            <div class="person" fxLayout="row" fxLayoutGap="10px">
+              <div class="image">
+                <img [src]="selectedChatData?.thumbnail" alt="" onError="this.src='https://via.placeholder.com/50'" />
+              </div>
+              <div class="details">
+                <h5 [innerHtml]="selectedChatData.name"></h5>
+                <div *ngIf="!monitorChatsEnabled" class="status">Active Now</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- messages -->
+        <div
+          class="message-body"
+          #scrollMe
+          [scrollTop]="scrollMe.scrollHeight"
+          [style.margin-top]="searchEnabled ? (getSelectedGroup?.length === 0 ? '8%' : '0%') : '0%'"
+        >
+          <div class="p-5" *ngIf="isMessagesLoading" fxLayout="row" fxLayoutAlign="center center">
+            <app-loader [isLoading]="true" size="1.5"></app-loader>
+          </div>
+          <ng-container *ngFor="let item of messagesHistory">
+            <div
+              [fxLayout]="item.type == 1 ? 'row-reverse' : 'row'"
+              fxLayoutGap="25px"
+              [ngClass]="item.type == 1 ? 'message-send' : 'message-recieved'"
+              *ngIf="item.id !== ''"
+            >
+              <div *ngIf="item?.image">
+                <img
+                  class="chat-image"
+                  width="3vw"
+                  src="{{ item?.image }}"
+                  alt=""
+                  onError="this.src='https://via.placeholder.com/50'"
+                />
+              </div>
+              <div *ngIf="item?.message" class="message-text">
+                <video controls [src]="item?.videoLink" *ngIf="item?.isVideo"></video>
+                <p>{{ item?.message }}</p>
+                <span class="time" *ngIf="item.type === 1 && !monitorChatsEnabled">{{
+                  item?.isRead ? 'Read' : 'Delivered'
+                }}</span>
+              </div>
+              <div class="time">
+                {{ item.time | date: 'shortTime' }}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <!-- send message -->
+        <div class="send-message" fxLayout="row" fxLayoutGap="10px">
+          <textarea
+            (keyup.enter)="sendMessage(textMessage)"
+            (keydown.enter)="$event.preventDefault()"
+            placeholder="Type a message"
+            name="message"
+            [(ngModel)]="textMessage"
+            (input)="onInput($event.target.value)"
+            type="text"
+            class="form-control textAreaMessage"
+            cols="40"
+            rows="1"
+            [disabled]="monitorChatsEnabled"
+            appNewline
+          ></textarea>
+          <button
+            class="btn btn-primary save-btn"
+            mat-flat-button
+            (click)="sendMessage(textMessage)"
+            [disabled]="isDisabled || monitorChatsEnabled"
+          >
+            Send <mat-icon svgIcon="send" class="pb-1 pl-2"></mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

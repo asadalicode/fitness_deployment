@@ -1,0 +1,126 @@
+@import "../../../../assets/fonts/poppins/stylesheet.css";
+@import "../../../../assets/fonts/stylesheet.css";
+
+:host {
+  :is(h1, p, h2, h5) {
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    text-align: center;
+    padding: 1em;
+  }
+
+  ::ng-deep .cke_chrome {
+    border: none !important;
+  }
+
+  ::ng-deep .cke_top {
+    display: none !important;
+  }
+
+  ::ng-deep .cke_bottom {
+    display: none !important;
+  }
+
+  ::ng-deep .cke_contents {
+    height: 500px !important;
+  }
+
+  .logo {
+    width: 150px;
+    margin: 0 auto;
+  }
+
+  q {
+    font-style: italic;
+    quotes: "« " " »";
+  }
+  .bg-color {
+    background-color: #0d1111;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .light-color {
+    background-color: #def2f1;
+  }
+  .action-btn {
+    border-radius: 0;
+  }
+  .example-card {
+    max-width: 400px;
+  }
+
+  .version-btn {
+    font-family: "Source-Sans-Pro-Bold" !important;
+    font-size: 16px;
+  }
+}
+.mat-content {
+  button {
+    font-family: "Source Sans Pro" !important;
+    font-size: 16px;
+  }
+  p {
+    font-family: "Source Sans Pro" !important;
+    font-size: 12px;
+    margin: 0;
+    color: #3aafa9 !important;
+  }
+}
+.version-detail {
+  h5 {
+    font-family: "Source-Sans-Pro-Bold";
+    font-size: 20px;
+  }
+  p {
+    font-family: "Source Sans Pro";
+    font-size: 16px;
+    padding-top: 10px !important;
+  }
+}
+.sub-head {
+  font-family: "Source Sans Pro";
+  font-size: 21px;
+}
+.download-btn {
+  font-family: "Source Sans Pro";
+  font-size: 16px;
+}
+.article-detail {
+  max-height: 500px;
+  height: auto;
+  overflow-y: auto !important;
+
+  h3 {
+    font-family: "Source-Sans-Pro-Bold";
+
+    font-size: 20px;
+    color: #17242a;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  p {
+    font-family: "Source Sans Pro";
+
+    font-size: 16px;
+    color: #17242a;
+    padding-bottom: 8px;
+  }
+}
+mat-chip-list {
+  mat-chip {
+    border-radius: 5px;
+    background-color: #def2f1;
+    font-family: "Source Sans Pro" !important;
+    font-size: 16px;
+  }
+}
+.sub-head {
+  font-family: "Source Sans Pro";
+  font-size: 28px;
+}

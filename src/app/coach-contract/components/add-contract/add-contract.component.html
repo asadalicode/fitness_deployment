@@ -1,0 +1,55 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 pl-0">
+        <div class="head">Coach Contract</div>
+      </div>
+    </div>
+    <div class="row mx-2 mt-3">
+      <form class="w-100" (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
+        <div class="bg-white pt-3 pb-3">
+          <div class="d-flex align-items-center">
+            <h5 class="sub-head pl-3">Content <span>(English)</span></h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row">
+            <div class="col m-3">
+              <ckeditor #editor formControlName="coach_contract_english" type="divarea"> </ckeditor>
+              <mat-error
+                *ngIf="Form.controls.coach_contract_english.touched && hasError('coach_contract_english', 'required')"
+              >
+                <span>Content is required</span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white pt-3 mt-3 pb-3">
+          <div class="d-flex align-items-center">
+            <h5 class="sub-head pl-3">Content <span>(Arabic)</span></h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row">
+            <div dir="rtl" class="col m-3">
+              <ckeditor id="arabic_editor" dir="rtl" #editor formControlName="coach_contract_arabic" type="divarea">
+              </ckeditor>
+              <mat-error
+                *ngIf="Form.controls.coach_contract_arabic.touched && hasError('coach_contract_arabic', 'required')"
+              >
+                <span>Content is required</span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-12 d-flex justify-content-end">
+            <button [disabled]="Form.invalid || isLoading" mat-flat-button class="save-btn text-white version-btn py-1">
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

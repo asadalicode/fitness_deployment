@@ -1,0 +1,75 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 pl-0">
+        <div class="head">FAQS</div>
+      </div>
+    </div>
+    <div class="row mx-2 mt-3">
+      <form class="w-100 payout-form" (ngSubmit)="submit()" [formGroup]="Form" #f novalidate>
+        <div class="bg-white pt-3 mb-3">
+          <div class="d-flex align-items-center">
+            <h5 class="sub-head pl-3">{{ faqId ? 'Update' : 'Add New(English)' }}</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row">
+            <div class="col m-3">
+              <label>Question</label>
+              <ckeditor #editor formControlName="question_en" id="description" name="description" type="divarea">
+              </ckeditor>
+              <mat-error *ngIf="Form.controls.question_en.touched && hasError('question_en', 'required')">
+                <span>Question is required</span>
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col m-3">
+              <label>Answer</label>
+              <ckeditor #editor formControlName="answer_en" id="description" name="description" type="divarea">
+              </ckeditor>
+              <mat-error *ngIf="Form.controls.answer_en.touched && hasError('answer_en', 'required')">
+                <span>Answer is required</span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white pt-3 pb-3">
+          <div class="d-flex align-items-center">
+            <h5 class="sub-head pl-3">{{ faqId ? 'Update' : 'Add New(Arabic)' }}</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row">
+            <div class="col m-3">
+              <label class="d-flex justify-content-end">سؤال</label>
+              <ckeditor #editor formControlName="question_ar" id="description" name="description" type="divarea">
+              </ckeditor>
+              <mat-error *ngIf="Form.controls.question_ar.touched && hasError('question_ar', 'required')">
+                <span>Question is required</span>
+              </mat-error>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col m-3">
+              <label class="d-flex justify-content-end">إجابة</label>
+              <ckeditor #editor formControlName="answer_ar" id="description" name="description" type="divarea">
+              </ckeditor>
+              <mat-error *ngIf="Form.controls.answer_ar.touched && hasError('answer_ar', 'required')">
+                <span>Answer is required</span>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-12 d-flex justify-content-end">
+            <button [disabled]="Form.invalid" mat-flat-button class="save-btn text-white version-btn py-1">
+              {{ faqId ? 'Submit' : 'Add new' }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

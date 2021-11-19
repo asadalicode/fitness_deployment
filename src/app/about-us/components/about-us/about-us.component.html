@@ -1,0 +1,63 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 align-items-center justify-content-between d-flex pl-0 pr-0">
+        <div class="head">About</div>
+        <button (click)="edit(data)" mat-flat-button class="bg-color text-white version-btn py-1">
+          <mat-icon class="mr-2" matPrefix>edit</mat-icon> Edit
+        </button>
+      </div>
+    </div>
+
+    <div class="row mt-3 mb-3" [ngClass]="dataService.isMobile ? '' : 'mx-2'">
+      <div class="col-md-12 bg-white">
+        <div class="align-items-center justify-content-between d-flex pt-3 pb-3">
+          <h5 class="sub-head">Content <span style="font-size: 60%">(English)</span></h5>
+          <div class="d-flex align-items-center">
+            <!-- <button mat-icon-button routerLink="/terms-and-conditions/edit-terms-and-conditions">
+              <mat-icon svgIcon="edit"></mat-icon>
+            </button> -->
+            <div>
+              <span class="px-2">{{ data?.status ? 'Active' : 'Inactive' }}</span>
+            </div>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+          <div class="pt-3 pb-3 article-detail content-scroller">
+            <ckeditor #editor [(ngModel)]="data.value" type="divarea"> </ckeditor>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3" [ngClass]="dataService.isMobile ? '' : 'mx-2'">
+      <div class="col-md-12 bg-white">
+        <div class="align-items-center justify-content-between d-flex pt-3 pb-3">
+          <h5 class="sub-head">Content <span style="font-size: 60%">(Arabic)</span></h5>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+          <div class="pt-3 pb-3 article-detail content-scroller">
+            <ckeditor
+              class="editor"
+              #editor
+              dir="rtl"
+              [(ngModel)]="data.value_arabic"
+              id="description"
+              name="description"
+              type="divarea"
+            >
+            </ckeditor>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & More.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

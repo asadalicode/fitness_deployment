@@ -1,0 +1,262 @@
+<div class="page custom-page">
+  <div class="container-fluid" [@listAnimation]="!isLoading">
+    <div class="row mt-3" [ngClass]="smallDevice ? '' : 'mx-2'">
+      <div class="col-md-12" [ngClass]="smallDevice ? '' : 'align-items-center justify-content-between d-flex'">
+        <div class="head" [ngClass]="smallDevice ? 'pb-1' : ''">Dashboard</div>
+
+        <div>
+          <button [matMenuTriggerFor]="menu" mat-flat-button class="bg-color text-white version-btn pt-1 pb-1 home-btn">
+            For Last {{ selectedDays }} Days
+            <!-- <mat-icon>arrow_drop_down</mat-icon> -->
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="selectedMenu(30)" mat-menu-item>30 days</button>
+            <button (click)="selectedMenu(15)" mat-menu-item>15 days</button>
+            <button (click)="selectedMenu(5)" mat-menu-item>5 days</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+
+    <div class="row pt-3 text-white" [ngClass]="smallDevice ? '' : 'mx-2'">
+      <div class="col-lg-12 d-lg-flex justify-content-between i-pad-pd">
+        <div class="col-sm-6 first-div">
+          <div class="card-box d-flex justify-content-between align-items-center p-2">
+            <div>
+              <h3>${{ earningsData?.header_data?.summary_of_balance }}</h3>
+              <p class="card-font">Summary of Balance</p>
+            </div>
+            <div>
+              <img src="assets/fitness/Group 82126.svg" alt="" class="img-fluid" width="60px" />
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 second-div">
+          <div class="card-box d-flex justify-content-between align-items-center p-2">
+            <div>
+              <h3>${{ earningsData?.header_data?.net_earnings }}</h3>
+              <p class="card-font">Net Earnings</p>
+            </div>
+            <div>
+              <img src="assets/fitness/Group 82127.svg" alt="" class="img-fluid" width="60px" />
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 third-div">
+          <div class="card-box d-flex justify-content-between align-items-center p-2">
+            <div>
+              <h3>${{ earningsData?.header_data?.payouts }}</h3>
+              <p class="card-font">Payouts</p>
+            </div>
+            <div>
+              <img src="assets/fitness/Group 82128.svg" alt="" class="img-fluid" width="60px" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mx-2 mt-3 chart-data" [ngClass]="isMobile ? '' : 'card-deck'">
+      <div class="card col-md-6" [ngClass]="isMobile ? 'mb-2' : ''">
+        <h5 class="py-3">Total Users</h5>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" FxLayoutGap="10x" fxLayoutAlign="center" class="mb-4">
+          <div fxFlex="50%">
+            <h4 class="py-3">Users</h4>
+            <canvas
+              baseChart
+              [data]="userChartData"
+              [plugins]="doughnutChartPlugins"
+              [height]="'250'"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"
+              [colors]="doughnutChartColors"
+              [options]="doughnutChartOptions"
+            >
+            </canvas>
+            <div fxLayout="flex" fxLayoutAlign="center center" fxLayoutGap="30px" class="pt-3 dots">
+              <div fxLayout="flex" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <img src="assets/gray-circle.png" />
+                <p>Male</p>
+              </div>
+              <div fxLayout="flex" fxLayoutGap="15px" fxLayoutAlign="center center">
+                <img src="assets/black-dot.png" />
+                <p>Female</p>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="50%">
+            <h4 class="py-3">Coaches</h4>
+
+            <canvas
+              baseChart
+              [height]="'250'"
+              [data]="coachChartData"
+              [labels]="doughnutChartLabels"
+              [plugins]="doughnutChartPlugins"
+              [chartType]="doughnutChartType"
+              [colors]="doughnutChartColors"
+              [options]="doughnutChartOptions"
+            >
+            </canvas>
+            <div fxLayout="flex" fxLayoutAlign="center center" fxLayoutGap="30px" class="pt-3 dots">
+              <div fxLayout="flex" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <img src="assets/gray-circle.png" />
+                <p>Male</p>
+              </div>
+              <div fxLayout="flex" fxLayoutGap="15px" fxLayoutAlign="center center">
+                <img src="assets/black-dot.png" />
+                <p>Female</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex p-0">
+        <div class="card px-3">
+          <h5 class="py-3">Payments Received</h5>
+
+          <mat-divider></mat-divider>
+          <div fxLayout="row" FxLayoutGap="10x" fxLayoutAlign="center" class="mb-4">
+            <div fxFlex="100%">
+              <h4 class="py-1">&nbsp;</h4>
+
+              <canvas
+                baseChart
+                [plugins]="doughnutChartPaymentPlugins"
+                [data]="paymentChartData"
+                [height]="'300'"
+                [labels]="doughnutChartPaymentLabels"
+                [chartType]="doughnutChartType"
+                [colors]="doughnutChartColors"
+                [options]="doughnutChartOptions"
+              >
+              </canvas>
+            </div>
+          </div>
+        </div>
+        <div class="card px-3">
+          <h5 class="py-3">Earnings Today</h5>
+          <mat-divider></mat-divider>
+          <div fxLayout="row" FxLayoutGap="10x" fxLayoutAlign="center" class="mb-4">
+            <div fxFlex="100%">
+              <h4 class="py-1">&nbsp;</h4>
+
+              <canvas
+                baseChart
+                [plugins]="doughnutChartEarningPlugins"
+                [data]="earningChartData"
+                [height]="'300'"
+                [labels]="doughnutChartEarningLabels"
+                [chartType]="doughnutChartType"
+                [colors]="doughnutChartColors"
+                [options]="doughnutChartOptions"
+              >
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mx-2 mt-3 chart-data" [ngClass]="isMobile ? '' : 'card-deck'">
+      <div class="col-md-6 card" [ngClass]="isMobile ? 'mb-2' : ''">
+        <div fxLayout="row" class="py-3" fxLayoutAlign="space-between center">
+          <h5>Subscription Purchase Graph</h5>
+          <div fxLayout="row">
+            <button (click)="seeToday()" mat-flat-button class="graph-btn">See today's</button>
+
+            <ngb-pagination
+              [ellipses]="true"
+              [maxSize]="3"
+              [collectionSize]="pageCount"
+              [(page)]="page"
+              [pageSize]="pageSize"
+              (pageChange)="setPage($event)"
+              size="sm"
+            >
+            </ngb-pagination>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="chart-wrapper mt-2">
+          <canvas
+            baseChart
+            [plugins]="doughnutChartPlugins"
+            [height]="'180'"
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            [colors]="barChartColors"
+          >
+          </canvas>
+        </div>
+      </div>
+
+      <div class="card col-md-6" [ngClass]="isMobile ? 'mb-2' : ''">
+        <h5 class="py-3">Total Subscriptions</h5>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" FxLayoutGap="10x" fxLayoutAlign="center" class="mb-4">
+          <div fxFlex="50%">
+            <h4 class="py-3">Gender</h4>
+            <canvas
+              baseChart
+              [plugins]="doughnutChartPlugins"
+              [data]="genderChartData"
+              [height]="'250'"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"
+              [colors]="doughnutChartColors"
+              [options]="doughnutChartOptions"
+            >
+            </canvas>
+            <div fxLayout="flex" fxLayoutAlign="center center" fxLayoutGap="30px" class="pt-3 dots">
+              <div fxLayout="flex" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <img src="assets/gray-circle.png" />
+                <p>Male</p>
+              </div>
+              <div fxLayout="flex" fxLayoutGap="15px" fxLayoutAlign="center center">
+                <img src="assets/black-dot.png" />
+                <p>Female</p>
+              </div>
+            </div>
+          </div>
+          <div fxFlex="50%">
+            <h4 class="py-3">Status</h4>
+
+            <canvas
+              baseChart
+              [plugins]="doughnutChartPlugins"
+              [height]="'250'"
+              [data]="statusChartData"
+              [labels]="doughnutChartLabelsStatus"
+              [chartType]="doughnutChartType"
+              [colors]="doughnutChartColors"
+              [options]="doughnutChartOptions"
+            >
+            </canvas>
+            <div fxLayout="flex" fxLayoutAlign="center center" fxLayoutGap="30px" class="pt-3 dots">
+              <div fxLayout="flex" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <img src="assets/gray-circle.png" />
+                <p>Active</p>
+              </div>
+              <div fxLayout="flex" fxLayoutGap="15px" fxLayoutAlign="center center">
+                <img src="assets/black-dot.png" />
+                <p>Expired</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & more.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

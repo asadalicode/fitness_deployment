@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <g id="Monthly_Reports" data-name="Monthly Reports" transform="translate(53.798 -143.007)">
+    <rect id="Rectangle_15" data-name="Rectangle 15" width="22" height="22" transform="translate(-53.798 143.007)" fill="#fff" opacity="0"/>
+    <g id="profit-report" transform="translate(-114.798 143.007)">
+      <g id="Group_81892" data-name="Group 81892" transform="translate(75)">
+        <g id="Group_81891" data-name="Group 81891">
+          <path id="Path_84952" data-name="Path 84952" d="M320,0V5.5h5.5Z" transform="translate(-320)" fill="#feffff"/>
+        </g>
+      </g>
+      <g id="Group_81894" data-name="Group 81894" transform="translate(64)">
+        <g id="Group_81893" data-name="Group 81893">
+          <path id="Path_84953" data-name="Path 84953" d="M75,6.875A1.377,1.377,0,0,1,73.625,5.5V0h-8.25A1.377,1.377,0,0,0,64,1.375v19.25A1.376,1.376,0,0,0,65.375,22h13.75A1.375,1.375,0,0,0,80.5,20.625V6.875ZM69.5,19.25H66.75V15.125H69.5Zm4.125,0h-2.75V12.375h2.75Zm4.125,0H75V9.625h2.75Z" transform="translate(-64)" fill="#feffff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

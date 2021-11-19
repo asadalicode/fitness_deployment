@@ -1,0 +1,355 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div class="col-md-12 pl-0">
+        <div class="head">Coach Management</div>
+      </div>
+    </div>
+
+    <div class="row mx-2 mt-3">
+      <div *ngIf="isBusy" class="col-md-12 pt-5 justify-content-center d-flex">
+        <app-loader [size]="1.5" class="inline-loader" [isLoading]="isBusy"></app-loader>
+      </div>
+      <form *ngIf="!isBusy" class="w-100" [formGroup]="Form" (ngSubmit)="submit()" #f novalidate>
+        <div class="col-md-12 bg-white pt-3 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Personal Details</h5>
+            <div fxLayoutGap="15px" fxLayout="row" fxLayoutAlign="center center" class="coach-left">
+              <h4>Activity Status</h4>
+
+              <mat-slide-toggle formControlName="is_active" (click)="toggleStatus()">
+                {{ Form.value.is_active ? 'Active' : 'Inactive' }}</mat-slide-toggle
+              >
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col">
+                <label>Username</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="user_name" />
+                  <mat-error *ngIf="hasError('user_name', 'required')">
+                    <span>User name is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Email</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="email" />
+                  <mat-error *ngIf="hasError('email', 'required')">
+                    <span>Email is required</span>
+                  </mat-error>
+                  <mat-error *ngIf="hasError('email', 'email')">
+                    <span>Invalid email</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col-md-3">
+                <label>First name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="first_name" />
+                  <mat-error *ngIf="hasError('first_name', 'required')">
+                    <span>First name is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <label>Last name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="last_name" />
+                  <mat-error *ngIf="hasError('last_name', 'required')">
+                    <span>Last name is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Country</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="country_id" placeholder="-Select-">
+                    <mat-option *ngFor="let item of CountryCodes$ | async" [value]="item.id">
+                      {{ item.title }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="hasError('country_id', 'required')">
+                    <span>Country is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col">
+                <label class="w-100 pb-2">Gender</label>
+                <mat-radio-group formControlName="gender" aria-label="Select an option" fxLayoutGap="35px">
+                  <mat-radio-button value="Male">Male</mat-radio-button>
+                  <mat-radio-button value="Female">Female</mat-radio-button>
+                  <mat-radio-button value="Other">Other</mat-radio-button>
+                </mat-radio-group>
+              </div>
+
+              <div class="col">
+                <label>Contact Number</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="phone_number" />
+                  <mat-icon matPrefix class="pr-5">phone</mat-icon>
+                  <mat-error *ngIf="hasError('phone_number', 'required')">
+                    <span>Contact number is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col-md-6">
+                <label>Workout program type</label>
+                <ng-multiselect-dropdown
+                  [placeholder]="'select...'"
+                  [settings]="dropdownSettings"
+                  [data]="workoutPrograms"
+                  formControlName="workout_program_type_ids"
+                  (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                >
+                </ng-multiselect-dropdown>
+                <mat-error
+                  *ngIf="
+                    hasError('workout_program_type_ids', 'required') && Form.controls.workout_program_type_ids.touched
+                  "
+                >
+                  <span>Atleast one program type is required</span>
+                </mat-error>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 bg-white pt-3 mt-4 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Bank Account Details</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col">
+                <label>Full name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="full_name" />
+                  <mat-error *ngIf="hasError('full_name', 'required')">
+                    <span>Full Name is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <label>Country</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="country_id" placeholder="-Select-">
+                    <mat-option *ngFor="let item of CountryCodes$ | async" [value]="item.id">
+                      {{ item.title }}
+                    </mat-option>
+                  </mat-select>
+
+                  <mat-error *ngIf="hasError('country_id', 'required')">
+                    <span>Country is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col">
+                <label>Bank Name</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="bank_id" placeholder="-Select-">
+                    <mat-option *ngFor="let item of BankCodes$ | async" [value]="item.id">
+                      {{ item.title }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="hasError('bank_id', 'required')">
+                    <span>Bank is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <label>Bank Swift Code</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="bank_swift_code" />
+                  <mat-error *ngIf="hasError('bank_swift_code', 'required')">
+                    <span>Swift code is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col">
+                <label>Account Currency</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="account_currency" placeholder="-Select-">
+                    <mat-option value="Dinar"> Dinar </mat-option>
+                    <mat-option value="USD"> USD </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="hasError('account_currency', 'required')">
+                    <span>Currency is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <label>IBAN Number</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="iban_number" />
+                  <mat-error *ngIf="hasError('iban_number', 'required')">
+                    <span>IBAN is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col-md-6">
+                <label>Account Number</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="account_number" />
+                  <mat-error *ngIf="hasError('account_number', 'required')">
+                    <span>Account Number is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 bg-white pt-3 mt-4 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Documents Details</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col">
+                <label>Document Type</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-select formControlName="document_type" placeholder="-Select-">
+                    <mat-option value="Passport"> Passport </mat-option>
+                    <mat-option value="National_Id"> National Id </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <label>Document Number</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="document_number" />
+                  <mat-error *ngIf="hasError('document_number', 'required')">
+                    <span>Document number is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row" [ngClass]="dataService.smallDevice ? '' : ' pt-3'">
+              <div class="col">
+                <label>Expiry Date</label>
+                <mat-form-field appearance="outline" class="w-100" (click)="picker.open()">
+                  <!-- <mat-label>Enter...</mat-label> -->
+                  <input matInput [matDatepicker]="picker" placeholder="Enter..." formControlName="expiry_date" />
+                  <mat-error *ngIf="hasError('expiry_date', 'required')">
+                    <span>Date is required</span>
+                  </mat-error>
+                  <mat-datepicker-toggle matSuffix [for]="picker" matPrefix>
+                    <mat-icon
+                      matDatepickerToggleIcon
+                      class="d-flex align-items-center text-center justify-content-center pr-2"
+                    >
+                      <img src="assets/fi-sr-calendar.png" alt="" width="18px" />
+                    </mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div class="col">
+                <label>Photo</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-chip-list #chipList>
+                    <mat-chip
+                      *ngFor="let tag of tags"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (removed)="remove(tag)"
+                    >
+                      {{ tag?.name }}
+                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="New Photo..."
+                      [disabled]="true"
+                      #tagInput
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      [matChipInputAddOnBlur]="addOnBlur"
+                      (matChipInputTokenEnd)="add($event)"
+                    />
+                  </mat-chip-list>
+                </mat-form-field>
+                <div class="position-relative">
+                  <button
+                    (click)="fileInput.click(); touch(); (false)"
+                    mat-flat-button
+                    class="save-btn text-white version-btn"
+                  >
+                    Upload
+                  </button>
+                </div>
+
+                <input
+                  #fileInput
+                  (change)="upload($event)"
+                  accept="application/pdf,application/vnd.ms-excel"
+                  style="visibility: hidden; display: contents"
+                  multiple
+                  type="file"
+                />
+                <mat-error *ngIf="hasError('document_image', 'required') && Form.controls.document_image.touched">
+                  <span>Document is required</span>
+                </mat-error>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 bg-white pt-3 mt-4 pb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h5 class="sub-head">Subscription Details</h5>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <div class="row pt-3">
+              <div class="col-md-6">
+                <label>Subscription Price</label>
+                <mat-form-field appearance="outline" class="w-100">
+                  <input matInput placeholder="Enter..." formControlName="subscription_price" />
+                  <mat-error *ngIf="hasError('subscription_price', 'required')">
+                    <span>Subscription is required</span>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="pt-2 pb-2 w-100">
+            <div class="col-md-12 d-flex justify-content-end">
+              <button [disabled]="isLoading" mat-flat-button class="save-btn text-white version-btn py-1">
+                {{ type == 'Edit' ? 'Save' : 'Add New' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & More.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

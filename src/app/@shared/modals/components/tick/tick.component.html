@@ -1,0 +1,30 @@
+<!-- <div class="my-modal-layout" fxLayout="row" fxLayoutAlign="center">
+  <div class="close" (click)="closeModal()">
+    <mat-icon>close</mat-icon>
+  </div>
+</div> -->
+<div class="modal-content">
+  <div class="modal-header" align="end">
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true">
+        <img src="assets/cancel.png" width="20px" />
+      </span>
+    </button>
+  </div>
+  <div class="modal-body pb-4 text-center pt-1">
+    <div>
+      <div>
+        <img [src]="userInfo.action ? 'assets/fitness/tick.svg' : 'assets/fitness/cross.svg'" width="80" />
+        <h3>{{ userInfo.action ? 'Tick' : 'Cross' }} this user</h3>
+        <p>Are you sure you want to {{ userInfo.action ? 'Tick' : 'Cross' }} this User.</p>
+      </div>
+
+      <mat-dialog-actions class="d-flex justify-content-center" fxLayoutGap="20px">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button (click)="userInfo.action ? onCrossSelect() : onTickSelect()" cdkFocusInitial class="clicked">
+          Confirm
+        </button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

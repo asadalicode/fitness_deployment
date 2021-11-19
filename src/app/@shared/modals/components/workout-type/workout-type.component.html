@@ -1,0 +1,43 @@
+<div class="modal-content">
+  <div class="modal-header align-items-center pb-0">
+    <h4 class="mb-0 payout-head">Add Workout Type</h4>
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true"> <img src="assets/cancel.png" width="20px" /></span>
+    </button>
+  </div>
+  <div class="modal-body pb-4">
+    <mat-divider></mat-divider>
+
+    <div class="pt-3">
+      <form class="w-100 payout-form" (ngSubmit)="lookUpComponent()" [formGroup]="Form" #f novalidate>
+        <div>
+          <label>Workout Type (English)</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="name" placeholder="Enter..." />
+            <mat-error *ngIf="hasError('name', 'required')">
+              <span>Workout type is required</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div dir="rtl">
+          <label class="d-flex font-weight-bold">نوع التمرين</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="name_arabic" placeholder="يدخل" />
+            <mat-error *ngIf="hasError('name_arabic', 'required')">
+              <span>Workout type is required</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-divider></mat-divider>
+        <mat-dialog-actions class="d-flex justify-content-between pt-3">
+          <button mat-button type="button" mat-dialog-close>Close</button>
+          <button mat-button type="submit" cdkFocusInitial class="clicked" [disabled]="Form.invalid || isLoading">
+            Add
+          </button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+  </div>
+</div>

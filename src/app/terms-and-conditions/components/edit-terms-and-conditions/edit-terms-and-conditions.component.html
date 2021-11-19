@@ -1,0 +1,72 @@
+<div class="page custom-page">
+  <div class="container-fluid">
+    <div class="row mx-2 mt-3">
+      <div
+        class="col-md-12 align-items-center justify-content-between pl-0 pr-0"
+        [ngClass]="dataService.smallDevice ? '' : ' d-flex'"
+      >
+        <div class="head">Terms & Conditions</div>
+        <div class="d-flex align-items-center" [ngClass]="dataService.smallDevice ? 'justify-content-between' : ''">
+          <div class="pr-3">
+            <span class="px-2">Active</span>
+            <mat-slide-toggle></mat-slide-toggle>
+          </div>
+          <button (click)="addEmployee()" mat-flat-button class="text-white bg-color version-btn">
+            Add new section<mat-icon class="pl-2">add_circle_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+      <div formArrayName="employees">
+        <div *ngFor="let employee of employees().controls; let empIndex = index">
+          <div class="row mx-2 mt-3">
+            <div class="col-md-12 bg-white">
+              <div class="align-items-center justify-content-between d-flex pt-3 pb-3">
+                <h5 class="sub-head">Edit Content {{ empIndex + 1 }}</h5>
+                <button *ngIf="empIndex > 0" mat-icon-button (click)="removeContent(empIndex)">
+                  <mat-icon svgIcon="delete"></mat-icon>
+                </button>
+              </div>
+              <mat-divider></mat-divider>
+              <form>
+                <div class="row pt-3">
+                  <div class="col-md-6 title">
+                    <label>Title</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                      <input matInput placeholder="Enter..." />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-12">
+                    <label>Content</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                      <textarea rows="5" matInput placeholder="Enter.."></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </form>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="row mt-3">
+      <div class="px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 d-flex justify-content-end pr-0">
+          <button routerLink="" mat-flat-button class="save-btn text-white bg-color version-btn px-5 py-1">Save</button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row mt-3 custom-footer">
+      <div class="bg-white px-4 pt-2 pb-2 w-100">
+        <div class="col-md-12 footer-font">
+          <span class="footer-bold"> Copyright © 2021 Fit & More.</span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

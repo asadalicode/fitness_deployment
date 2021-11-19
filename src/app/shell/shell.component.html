@@ -1,0 +1,108 @@
+<div fxFlex>
+  <mat-sidenav-container fxFill>
+    <mat-sidenav
+      #sidenav
+      [mode]="isMobile ? 'over' : 'side'"
+      [opened]="!isMobile"
+      [disableClose]="!isMobile"
+      ngClass.gt-sm="has-border"
+    >
+      <mat-toolbar class="bg-color justify-content-center my-3">
+        <img src="assets/fitness/Group 81902.svg" alt="" class="overlap" />
+      </mat-toolbar>
+
+      <!-- <ng-material-multilevel-menu [configuration]="config" [items]="appitems" (selectedItem)="selectedItem($event)">
+      </ng-material-multilevel-menu> -->
+      <nav class="pt-3 pb-3">
+        <mat-list>
+          <mat-divider></mat-divider>
+          <div *ngFor="let item of siderBarItems">
+            <a
+              *ngIf="permission.can(item.url_prefix) || item.url_prefix == 'about_us'"
+              mat-list-item
+              [routerLink]="item.link"
+              routerLinkActive="active"
+              #rla="routerLinkActive"
+              (click)="isMobile && sidenav.close() && selectLink(item.link)"
+            >
+              <!-- <mat-icon [svgIcon]="rla.isActive ? item.icon_inactive : item.icon_active"></mat-icon> -->
+              <img [src]="rla.isActive ? item.icon_inactive : item.icon_active" alt="" />
+              <div translate class="pl-2 pt-1">{{ item.name }}</div>
+            </a>
+          </div>
+        </mat-list>
+      </nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar
+        color="primary"
+        class="mat-elevation-z6 primary d-flex align-items-center justify-content-between mat-fixed-toolbar"
+      >
+        <button
+          class="menu-button"
+          [ngClass]="sidenav.opened ? 'mat-hamburger-ml' : ''"
+          mat-icon-button
+          (click)="sidenav.toggle()"
+          fxShow.gt-sm
+        >
+          <mat-icon>menu</mat-icon>
+          <!-- <img *ngIf="sidenav.opened" src="assets/icon-right.png" alt="" />
+          <img *ngIf="!sidenav.opened" src="assets/icon-left.png" alt="" /> -->
+
+          <!-- <mat-icon *ngIf="sidenav.opened" svgIcon="icon-left"></mat-icon>
+          <mat-icon *ngIf="!sidenav.opened" svgIcon="icon-left"></mat-icon> -->
+        </button>
+        <!-- <span>{{ title }}</span> -->
+        <div [ngClass]="smallDevice ? '' : 'mr-5'">
+          <div class="remove-hv">
+            <button
+              mat-button
+              [matMenuTriggerFor]="menu"
+              class="py-2 px-4"
+              backdropClass="customize"
+              [ngClass]="menuTrigger.menuOpen ? 'profile-btn' : 'profile-btn-2'"
+              #menuTrigger="matMenuTrigger"
+              (mouseover)="isMobile ? '' : menuTrigger.openMenu()"
+            >
+              <img
+                class="rounded-circle"
+                [src]="adminData?.image_url ? adminData?.image_url : 'assets/profile.png'"
+                onerror="this.onerror=null;this.src='assets/profile.png';"
+                alt=""
+                width="40px"
+                height="40px"
+              />
+              <span class="px-2 admin-font"> {{ adminData?.name }}</span>
+            </button>
+          </div>
+          <!--  -->
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <span (mouseleave)="menuTrigger.closeMenu()">
+              <mat-card class="p-0">
+                <mat-card-header class="text-center p-2">
+                  <div>
+                    <img
+                      class="rounded-circle pb-2"
+                      [src]="adminData?.image_url ? adminData?.image_url : 'assets/profile.png'"
+                      onerror="this.onerror=null;this.src='assets/profile.png';"
+                      width="80px"
+                      height="60px"
+                    />
+                  </div>
+                  <mat-card-title>{{ adminData?.name }} - {{ adminData?.role }}</mat-card-title>
+                  <mat-card-subtitle>joined at {{ adminData?.createdAt | date: 'dd MMM, YYYY' }}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-actions fxLayoutGap="10px" class="justify-content-between d-flex p-3 light-bg m-0">
+                  <button mat-button class="profile-btns" routerLink="/admin-management/user-profile">Profile</button>
+                  <button mat-button class="profile-btns m-0" (click)="logout()">Sign Out</button>
+                </mat-card-actions>
+              </mat-card>
+            </span>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

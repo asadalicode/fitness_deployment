@@ -1,0 +1,39 @@
+<div class="modal-content">
+  <div class="modal-header align-items-center">
+    <h2 class="mb-0">Arrange Coaches</h2>
+    <button type="button" (click)="close()" class="close" aria-label="Close">
+      <span aria-hidden="true"> <img src="assets/cancel.png" width="20px" /></span>
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <p class="para">Drag & Drop coaches to change their order</p>
+  <div class="modal-body pb-4">
+    <div *ngIf="isBusy" class="col-md-12 justify-content-center d-flex">
+      <app-loader [size]="1" class="inline-loader" [isLoading]="isBusy"></app-loader>
+    </div>
+    <div (click)="lookUpComponent()" fxLayout="column" fxLayoutGap="20px">
+      <div fxFlex fxLayoutGap="5%" fxLayoutAlign="start start">
+        <section>
+          <h5 class="font-weight-bold">Order#</h5>
+          <div *ngFor="let item of coachList; let i = index">
+            <div class="box text-center">
+              {{ i + 1 }}
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h5 class="font-weight-bold">Coaches</h5>
+          <div cdkDropList class="box-width" (cdkDropListDropped)="drop($event)">
+            <div class="box cursor-move" *ngFor="let item of coachList" cdkDrag>{{ item?.full_name }}</div>
+          </div>
+        </section>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-dialog-actions class="d-flex justify-content-between" fxLayoutGap="20px">
+        <button mat-button type="button" mat-dialog-close>Close</button>
+        <button mat-button type="submit" cdkFocusInitial class="clicked" [disabled]="isLoading">Save</button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

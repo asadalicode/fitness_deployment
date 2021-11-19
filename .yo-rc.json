@@ -1,0 +1,42 @@
+{
+  "generator-ngx-rocket": {
+    "version": "9.2.0",
+    "props": {
+      "location": "path",
+      "strict": false,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "Fitness",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "material",
+      "layout": "side-menu",
+      "auth": true,
+      "lazy": true,
+      "angulartics": true,
+      "languages": [
+        "en-US",
+        "es-ES"
+      ],
+      "analyticsProvider": "ga",
+      "googleAnalyticsAccount": "",
+      "tools": [
+        "prettier",
+        "hads"
+      ],
+      "utility": [
+        "lodash",
+        "moment"
+      ],
+      "deploy": "none",
+      "projectName": "Fitness",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": []
+    }
+  }
+}

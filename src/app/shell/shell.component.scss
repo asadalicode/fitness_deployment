@@ -1,0 +1,246 @@
+@import "../../theme/theme-variables";
+
+// @import "../../assets/fonts/poppins/stylesheet.css";
+// @import "../../assets/fonts/stylesheet.css";
+
+:host {
+  display: flex;
+  flex: 1;
+
+  // .mat-button:hover:not(.mat-button-disabled) .mat-button-focus-overlay,
+  // .mat-stroked-button:hover:not(.mat-button-disabled) .mat-button-focus-overlay {
+  //   opacity: 0 !important;
+  // }
+}
+
+::ng-deep .mat-expansion-panel-body {
+  background-color: #21333b;
+  padding: 0 24px 0px !important;
+}
+
+.span-16 {
+  font-size: 14px !important;
+}
+
+.mat-hamburger-ml {
+  margin-left: 265px;
+}
+
+.mat-sidenav {
+  min-width: 270px;
+  max-width: 28%;
+}
+.overlap {
+  z-index: 1;
+}
+
+.has-border {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.mat-list {
+  padding-top: 0;
+
+  a {
+    mat-icon {
+      height: 20px !important;
+    }
+  }
+  mat-expansion-panel {
+    mat-icon {
+      height: 20px !important;
+    }
+  }
+}
+
+.mat-list-item {
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.menu-button {
+  margin-right: 1rem;
+}
+.bg-color,
+.mat-drawer {
+  background-color: #0d1111 !important;
+}
+.bg-color-2 {
+  background: #0d1111 !important;
+
+  // position: absolute;
+}
+.sidebar-dropdown {
+  box-shadow: none !important;
+  background: transparent !important;
+  color: #fff !important;
+
+  .mat-expansion-panel-body {
+    padding: 0 24px 0px !important;
+    font-family: "Source Sans Pro";
+    font-size: 14px;
+  }
+
+  .mat-expansion-panel-header {
+    padding: 0 20px;
+    height: 48px !important;
+    font-family: "Source Sans Pro";
+    // font-size: 16px;
+
+    &[aria-expanded="true"] {
+      margin-bottom: 5px;
+    }
+
+    .mat-content .mat-icon {
+      margin-right: 10px !important;
+    }
+
+    &:hover {
+      background: none !important;
+      border-radius: 0 !important;
+    }
+  }
+
+  a {
+    height: 32px !important;
+    font-size: 13px !important;
+    margin-bottom: 4px;
+
+    span {
+      padding-left: 0 !important;
+      opacity: 0.5;
+    }
+  }
+}
+::ng-deep .mat-expansion-indicator::after {
+  color: $white-color !important;
+}
+
+.mat-toolbar.mat-primary {
+  background-color: #5d5d5d !important ;
+}
+.profile-btn {
+  background: #0d1111 !important;
+}
+::ng-deep .mat-button:hover:not(.mat-button-disabled) .mat-button-focus-overlay,
+.mat-stroked-button:hover:not(.mat-button-disabled) .mat-button-focus-overlay {
+  opacity: 0 !important;
+}
+
+::ng-deep .mat-button-focus-overlay {
+  opacity: 0 !important;
+}
+.profile-btn-2 {
+  background: none !important;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+::ng-deep .mat-menu-content {
+  padding: 0 !important;
+}
+.mat-card-header {
+  flex-direction: column-reverse !important;
+}
+mat-card-title {
+  font-size: 20px !important;
+  font-family: "Source Sans Pro";
+}
+mat-card-subtitle {
+  font-family: "Source Sans Pro";
+  font-size: 18px;
+}
+.profile-btns {
+  background: #0d1111 !important;
+  color: white;
+  font-family: "Source Sans Pro";
+}
+
+.span-16 {
+  font-size: 1em;
+}
+
+.bg-box {
+  background-color: #21333b;
+}
+.mat-sidenav {
+  .mat-list {
+    mat-expansion-panel-header {
+      // padding: 0px;
+      border-left: 3px solid transparent;
+      font-family: "Source Sans Pro";
+      font-size: 1.05em;
+      border-radius: 0 !important;
+      &.active {
+        border-color: #0d1111;
+        background-color: #121b20;
+      }
+    }
+  }
+  .mat-list-item-content mat-icon {
+    height: 18px !important;
+    width: 18px !important;
+  }
+}
+
+.mat-sidenav {
+  .mat-list {
+    padding-top: 0;
+    padding: 0;
+
+    mat-divider {
+      border: 1px solid transparent;
+    }
+
+    .mat-list-item {
+      padding: 0px;
+      border-left: 3px solid transparent;
+      font-family: "Source Sans Pro";
+      font-size: 1.05em;
+      &.active {
+        border-color: #0d1111;
+        background-color: #ffffff;
+        color: #0d1111 !important;
+      }
+      // .active .mat-icon {
+      //   fill: #0d1111;
+      // }
+      .active .mat-icon {
+        color: inherit !important;
+      }
+    }
+  }
+}
+
+.active-route {
+  color: white;
+}
+
+.mat-fixed-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+.light-bg {
+  background: rgba(245, 238, 238, 1);
+}
+.mat-menu-panel {
+  width: 320px !important;
+}
+mat-card-actions button {
+  font-family: "Source Sans Pro";
+}
+
+.in-active-route {
+  opacity: 1 !important;
+}
+.mat-expansion-panel {
+  border-radius: 0 !important;
+}
